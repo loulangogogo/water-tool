@@ -15,11 +15,18 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-lang3.version>3.16.0</commons-lang3.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
-        <commons-io.version>2.11.0</commons-io.version>
-        <jackson.version>2.12.5</jackson.version>
-        <commons-codec.version>1.15</commons-codec.version>
+        <commons-io.version>2.16.1</commons-io.version>
+        <commons-codec.version>1.17.1</commons-codec.version>
+        <tika-core.version>2.9.2</tika-core.version>
+
+        <!--打包使用-->
+        <central-publishing-maven.version>0.5.0</central-publishing-maven.version>
+        <maven-compiler.version>3.13.0</maven-compiler.version>
+        <maven-source.version>3.3.1</maven-source.version>
+        <maven-javadoc.version>3.8.0</maven-javadoc.version>
+        <maven-gpg.version>3.2.5</maven-gpg.version>
     </properties>
 
     <dependencies>
@@ -44,6 +51,12 @@
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>${tika-core.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,27 +65,17 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.5.0</version>
+                <version>${central-publishing-maven.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.4.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                    <tokenAuth>true</tokenAuth>
                 </configuration>
             </plugin>
             <!-- 编译代码 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler.version}</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.source}</target>
@@ -82,7 +85,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>${maven-source.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -96,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>${maven-javadoc.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -110,7 +113,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${maven-gpg.version}</version>
                 <executions>
                     <execution>
                         <phase>verify</phase>

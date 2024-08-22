@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  ** 树工具
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class TreeTool {
 

@@ -8,7 +8,7 @@ import java.util.Map;
  ** 数学工具
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class MathTool {
 

@@ -4,7 +4,7 @@ package io.github.loulangogogo.water.exception;
  ** 断言异常
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class AssertException extends BaseException {
     public AssertException() {

@@ -4,7 +4,7 @@ package io.github.loulangogogo.water.exception;
  ** 无效的参数异常
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class InvalidParameterException extends BaseException{
     public InvalidParameterException() {

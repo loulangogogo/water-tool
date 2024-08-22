@@ -8,7 +8,7 @@ import java.util.List;
  ** 使用{@link TreeTool}工具需要实现的接口
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public interface TreeNode<T> {
 

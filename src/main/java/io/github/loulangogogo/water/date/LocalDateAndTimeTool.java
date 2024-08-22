@@ -10,7 +10,7 @@ import java.util.Date;
  ** 本地日期和时间的工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class LocalDateAndTimeTool {
 

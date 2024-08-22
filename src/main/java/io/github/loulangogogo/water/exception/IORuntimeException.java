@@ -4,7 +4,7 @@ package io.github.loulangogogo.water.exception;
  ** IO运行时异常，常用于对IOException的包装
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class IORuntimeException extends BaseException {
     public IORuntimeException() {

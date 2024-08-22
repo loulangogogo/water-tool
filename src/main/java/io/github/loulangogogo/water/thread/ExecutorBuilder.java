@@ -17,7 +17,7 @@ import java.util.concurrent.*;
  **     5.如果没有空闲线程，且阻塞队列已满，同时池中的线程数等于maximumPoolSize ，则根据构造函数中的 handler 指定的策略来拒绝新的任务;
  ** </pre>
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {
     private static final long serialVersionUID = 1L;

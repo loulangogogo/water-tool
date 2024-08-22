@@ -8,7 +8,7 @@ import java.nio.charset.Charset;
  ** 编码对照枚举类型
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public enum CharsetEnum {
 

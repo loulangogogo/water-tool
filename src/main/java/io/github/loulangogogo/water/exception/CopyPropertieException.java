@@ -4,7 +4,7 @@ package io.github.loulangogogo.water.exception;
  ** 属性复制异常
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class CopyPropertieException extends BaseException {
     public CopyPropertieException() {

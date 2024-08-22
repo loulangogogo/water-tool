@@ -16,7 +16,7 @@ import java.util.Map;
  ** 断言工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class AssertTool {
 

@@ -6,7 +6,7 @@ import java.io.Serializable;
  ** 建造者模式的接口定义
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public interface Builder<T> extends Serializable {
 

@@ -11,7 +11,7 @@ import java.security.SecureRandom;
 /*********************************************************
  ** AES加解密工具类（对称加密）
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class AESTool {
 
@@ -24,7 +24,7 @@ public class AESTool {
      ** 
      **  2022/7/7 18:42
      ** @author loulan
-     ** @since JDK-1.8
+     ** @since 8
      *********************************************************/
     public enum MODE {
         ECB,
@@ -40,7 +40,7 @@ public class AESTool {
      ** 
      **  2022/7/7 18:42
      ** @author loulan
-     ** @since JDK-1.8
+     ** @since 8
      *********************************************************/
     public enum PADDING {
         NoPadding,

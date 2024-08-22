@@ -11,7 +11,7 @@ import java.util.Map;
  ** Map集合工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class MapTool {
 

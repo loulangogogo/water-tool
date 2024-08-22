@@ -10,7 +10,7 @@ import java.util.Objects;
  ** 对象通用工具类 ，包括判空、克隆、序列化等操作
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ObjectTool {
 

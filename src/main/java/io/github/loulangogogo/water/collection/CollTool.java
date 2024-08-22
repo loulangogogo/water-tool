@@ -13,7 +13,7 @@ import java.util.function.Function;
  ** Collection集合类工具,继承了CollectionTool工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class CollTool extends CollectionTool {
 

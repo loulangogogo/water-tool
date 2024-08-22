@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * 当前线程池工具采用的同步阻塞队列，无限最大线程
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ThreadPoolTool {
     private static ThreadPoolExecutor executor;

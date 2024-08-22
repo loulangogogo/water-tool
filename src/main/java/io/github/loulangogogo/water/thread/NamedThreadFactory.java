@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  ** 命名线程工厂类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class NamedThreadFactory implements ThreadFactory {
     //  线程的前缀名称

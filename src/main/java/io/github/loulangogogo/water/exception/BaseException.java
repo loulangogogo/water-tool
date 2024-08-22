@@ -4,7 +4,7 @@ package io.github.loulangogogo.water.exception;
  ** 基础异常,里面的异常都必须继承这个异常
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class BaseException extends RuntimeException{
 

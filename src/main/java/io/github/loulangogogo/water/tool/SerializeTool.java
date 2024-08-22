@@ -10,7 +10,7 @@ import java.io.Serializable;
  ** Description: 序列化工具,该工具主要来自apache的lang3包{@link SerializationUtils}
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class SerializeTool {
 

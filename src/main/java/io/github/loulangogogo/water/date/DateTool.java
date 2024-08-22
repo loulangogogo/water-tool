@@ -12,7 +12,7 @@ import java.util.TimeZone;
  ** 日期类型{@link Date} 的工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class DateTool {
 

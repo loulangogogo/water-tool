@@ -4,7 +4,7 @@ package io.github.loulangogogo.water.enums;
  ** 脱敏数据类型的枚举值
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public enum MaskingDataTypeEnum {
     // 手机号码

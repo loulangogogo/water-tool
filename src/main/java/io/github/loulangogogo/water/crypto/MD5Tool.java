@@ -13,7 +13,7 @@ import java.io.InputStream;
  ** md5生成的哈希结果是一个128位的二进制数，而md5hex生成的哈希结果是一个32位的Hex字符串。
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class MD5Tool {
 

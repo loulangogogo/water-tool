@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  ** 对象工具类
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class BeanTool {
 

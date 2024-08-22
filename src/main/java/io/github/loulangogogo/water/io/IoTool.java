@@ -11,7 +11,7 @@ import java.io.*;
  ** io工具类
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class IoTool {
 

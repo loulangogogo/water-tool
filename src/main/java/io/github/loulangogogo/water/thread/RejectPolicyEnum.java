@@ -7,7 +7,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  ** 线程拒绝策略枚举
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public enum RejectPolicyEnum {
 

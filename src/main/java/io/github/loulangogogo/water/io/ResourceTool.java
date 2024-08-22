@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  ** 资源工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ResourceTool {
 

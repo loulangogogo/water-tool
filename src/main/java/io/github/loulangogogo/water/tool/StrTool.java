@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  ** 字符串工具类
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class StrTool {
 

@@ -7,7 +7,7 @@ import java.util.*;
 /*********************************************************
  ** Collection集合类工具,请尽量使用CollTool
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 @Deprecated
 public class CollectionTool {

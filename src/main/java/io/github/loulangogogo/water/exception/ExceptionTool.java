@@ -9,7 +9,7 @@ import java.io.StringWriter;
  ** 异常工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ExceptionTool {
     

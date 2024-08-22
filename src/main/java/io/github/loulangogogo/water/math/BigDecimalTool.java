@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  ** {@link BigDecimal}类的工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class BigDecimalTool {
 

@@ -7,7 +7,7 @@ import java.time.temporal.TemporalAccessor;
  ** 本地日期和时间格式化工具
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class LocalDateAndTimeFormatTool {
 

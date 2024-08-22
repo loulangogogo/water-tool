@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  ** Stream的收集器工具
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class CollectorTool {
 

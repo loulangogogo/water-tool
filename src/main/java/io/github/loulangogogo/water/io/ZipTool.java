@@ -20,7 +20,7 @@ import java.util.zip.ZipOutputStream;
  ** 如果要进行7z、tar、gz等等方式的加密操作，可以使用apache的compress工具包(https://commons.apache.org/proper/commons-compress/examples.html)。
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ZipTool {
 

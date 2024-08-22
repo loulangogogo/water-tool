@@ -17,7 +17,7 @@ import java.util.Arrays;
  ** 【该类方法来自apache的poi】
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public enum FileMagic {
     /**

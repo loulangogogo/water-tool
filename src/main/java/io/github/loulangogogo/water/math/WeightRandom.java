@@ -8,7 +8,7 @@ import java.util.Map;
  ** 随机生成获取对象的权重对象,相同的T对象只能put进去一个
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class WeightRandom<T> {
 

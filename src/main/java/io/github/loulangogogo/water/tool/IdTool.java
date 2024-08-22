@@ -6,7 +6,7 @@ import java.util.UUID;
  ** Id的通用工具
  ** 
  ** @author 楼兰
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class IdTool {
 

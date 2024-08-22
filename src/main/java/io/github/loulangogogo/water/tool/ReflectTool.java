@@ -15,7 +15,7 @@ import java.util.Optional;
  ** 反射工具类
  ** 
  ** @author loulan
- ** @since JDK-1.8
+ ** @since 8
  *********************************************************/
 public class ReflectTool {
 
