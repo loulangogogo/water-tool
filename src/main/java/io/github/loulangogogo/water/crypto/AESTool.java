@@ -1,5 +1,8 @@
 package io.github.loulangogogo.water.crypto;
 
+import io.github.loulangogogo.water.exception.DecryptException;
+import io.github.loulangogogo.water.exception.EncryptException;
+
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
@@ -21,7 +24,7 @@ public class AESTool {
 
     /*********************************************************
      ** 工作模式的枚举类型
-     ** 
+     **
      **  2022/7/7 18:42
      ** @author loulan
      ** @since 8
@@ -37,7 +40,7 @@ public class AESTool {
 
     /*********************************************************
      ** 填充方式的枚举类型
-     ** 
+     **
      **  2022/7/7 18:42
      ** @author loulan
      ** @since 8
@@ -86,10 +89,14 @@ public class AESTool {
      * @return 加密后的数据
      * @author :loulan
      */
-    public static byte[] encrypt(String key, byte[] data, String mode, String pad) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        Cipher cipher = Cipher.getInstance(String.format("%s/%s/%s", ALGORITHM, mode, pad));
-        cipher.init(Cipher.ENCRYPT_MODE, buildKey(Base64Tool.toDecode(key)));
-        return cipher.doFinal(data);
+    public static byte[] encrypt(String key, byte[] data, String mode, String pad) {
+        try {
+            Cipher cipher = Cipher.getInstance(String.format("%s/%s/%s", ALGORITHM, mode, pad));
+            cipher.init(Cipher.ENCRYPT_MODE, buildKey(Base64Tool.toDecode(key)));
+            return cipher.doFinal(data);
+        } catch (Exception ex) {
+            throw new EncryptException(ex);
+        }
     }
 
     /**
@@ -100,7 +107,7 @@ public class AESTool {
      * @return 解密后的数据
      * @author :loulan
      */
-    public static byte[] encrypt(String key, byte[] data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public static byte[] encrypt(String key, byte[] data) {
         return encrypt(key, data, MODE.ECB.name(), PADDING.PKCS5Padding.name());
     }
 
@@ -112,7 +119,7 @@ public class AESTool {
      * @return 解密后的数据
      * @author :loulan
      */
-    public static String encrypt(String key, String data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public static String encrypt(String key, String data) {
         return Base64Tool.toEncode(encrypt(key, data.getBytes(StandardCharsets.UTF_8), MODE.ECB.name(), PADDING.PKCS5Padding.name()));
     }
 
@@ -126,10 +133,14 @@ public class AESTool {
      * @return 解密后的数据
      * @author :loulan
      */
-    public static byte[] decrypt(String key, byte[] data, String mode, String pad) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-        Cipher cipher = Cipher.getInstance(String.format("%s/%s/%s", ALGORITHM, mode, pad));
-        cipher.init(Cipher.DECRYPT_MODE, buildKey(Base64Tool.toDecode(key)));
-        return cipher.doFinal(data);
+    public static byte[] decrypt(String key, byte[] data, String mode, String pad) {
+        try {
+            Cipher cipher = Cipher.getInstance(String.format("%s/%s/%s", ALGORITHM, mode, pad));
+            cipher.init(Cipher.DECRYPT_MODE, buildKey(Base64Tool.toDecode(key)));
+            return cipher.doFinal(data);
+        } catch (Exception ex) {
+            throw new DecryptException(ex);
+        }
     }
 
     /**
@@ -140,7 +151,7 @@ public class AESTool {
      * @return 解密后的数据
      * @author :loulan
      */
-    public static byte[] decrypt(String key, byte[] data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public static byte[] decrypt(String key, byte[] data) {
         return decrypt(key, data, MODE.ECB.name(), PADDING.PKCS5Padding.name());
     }
 
@@ -152,7 +163,7 @@ public class AESTool {
      * @return 解密后的数据
      * @author :loulan
      */
-    public static String decrypt(String key, String data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    public static String decrypt(String key, String data) {
         return new String(decrypt(key, Base64Tool.toDecode(data), MODE.ECB.name(), PADDING.PKCS5Padding.name()));
     }
 }
