@@ -1,4 +1,4 @@
-package io.github.loulangogogo.water.tool;
+package io.github.loulangogogo.water.bean;
 
 import org.apache.commons.lang3.SerializationUtils;
 
