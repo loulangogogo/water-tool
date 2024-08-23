@@ -2,7 +2,6 @@ package io.github.loulangogogo.water.tool;
 
 import io.github.loulangogogo.water.collection.ArrayTool;
 import io.github.loulangogogo.water.exception.ReflectException;
-import org.apache.commons.beanutils.ConvertUtils;
 
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
@@ -97,11 +96,6 @@ public class ReflectTool {
         try {
             // 判断值value的类型和要设置的字段的类型是否匹配，如果不匹配则尝试转换（转换失败抛出异常）
             Class<?> fieldType = field.getType();
-            if (ObjectTool.isNull(value) || false == fieldType.isAssignableFrom(value.getClass())) {
-                // 数据值为null（int等基本数据类型要转换成指定的数值）,或者数据类型不匹配就尝试转换
-                Object convertValue = ConvertUtils.convert(value, fieldType);
-                value = ObjectTool.isNotNull(convertValue) ? convertValue : value;
-            }
 
             // 开放访问权限
             setAccessible(field);

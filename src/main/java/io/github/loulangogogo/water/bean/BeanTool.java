@@ -4,23 +4,18 @@ import io.github.loulangogogo.water.collection.CollectionTool;
 import io.github.loulangogogo.water.exception.CopyPropertieException;
 import io.github.loulangogogo.water.stream.CollectorTool;
 import io.github.loulangogogo.water.tool.ObjectTool;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.PropertyUtils;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Stream;
 
 /*********************************************************
  ** 对象工具类
- ** 
+ **
  ** @author 楼兰
  ** @since 8
  *********************************************************/
 public class BeanTool {
-
     /**
      * 进行对象属性复制
      *
@@ -33,7 +28,7 @@ public class BeanTool {
             if (ObjectTool.isNull(source) || ObjectTool.isNull(target)) {
                 throw new NullPointerException("'source' object or 'target' object is null");
             } else {
-                BeanUtils.copyProperties(target, source);
+                BeanPropertiesTool.copyProperties(source, target);
             }
         } catch (Exception ex) {
             throw new CopyPropertieException(ex);
@@ -108,7 +103,6 @@ public class BeanTool {
      * @return class类文件对应的对象
      * @author :loulan
      */
-    @Deprecated
     public static <T> T copy(Map<String, ? extends Object> source, Class<T> clzz) {
         return mapToBean(source, clzz);
     }
@@ -204,8 +198,7 @@ public class BeanTool {
      */
     public static void beanToMap(Object sourceObj, Map<String, Object> targetMap) {
         try {
-            Map<String, Object> map = PropertyUtils.describe(sourceObj);
-            targetMap.putAll(map);
+            BeanPropertiesTool.beanToBean(sourceObj, targetMap);
         } catch (Exception ex) {
             throw new CopyPropertieException(ex);
         }
@@ -220,7 +213,9 @@ public class BeanTool {
      */
     public static Map<String, Object> beanToMap(Object sourceObj) {
         try {
-            return PropertyUtils.describe(sourceObj);
+            Map<String, Object> target = new HashMap<>();
+            beanToMap(sourceObj, target);
+            return target;
         } catch (Exception ex) {
             throw new CopyPropertieException(ex);
         }
@@ -240,7 +235,7 @@ public class BeanTool {
     @Deprecated
     public static void mapToBean(Map<String, ? extends Object> sourceMap, Object targetObj) {
         try {
-            BeanUtils.populate(targetObj, sourceMap);
+            BeanPropertiesTool.mapToBean(sourceMap, targetObj);
         } catch (Exception ex) {
             throw new CopyPropertieException(ex);
         }
