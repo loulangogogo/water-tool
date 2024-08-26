@@ -19,6 +19,7 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定类型的数组
      *
+     * @param <T>   泛型
      * @param supplierArray 函数式方法，主要是用来提供数组对象，{@code （size）-> new String[size]},方法参数为提供的数组的大小【注意提供数组类型必须和流类型一致】
      * @return Array收集器
      * @author :loulan
@@ -39,6 +40,8 @@ public class CollectorTool {
     /**
      * 将流数据转换为Collection集合收集器
      *
+     * @param <T>   泛型
+     * @param <C>   继承实现{@link Collection}的泛型
      * @param collectionFactory 集合对象提供。集合对象必须是继承了Collection的
      * @return Collection集合收集器
      * @author :loulan
@@ -50,6 +53,7 @@ public class CollectorTool {
     /**
      * list集合收集器。{@link Collectors#toList()}
      *
+     * @param <T>   泛型
      * @return list集合收集器
      * @author :loulan
      */
@@ -60,6 +64,7 @@ public class CollectorTool {
     /**
      * set集合收集器。{@link Collectors#toSet()}
      *
+     * @param <T>   泛型
      * @return set集合收集器
      * @author :loulan
      */
@@ -104,6 +109,9 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定key和value的map收集器。（如果key出现重复，那么会抛出异常，因为使用map的merge方法，重复的key设置为抛出异常）
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <U>   泛型
      * @param keyMapper   key的{@link Function}函数式接口
      * @param valueMapper value的{@link Function}函数式接口
      * @return 流数据的map收集器
@@ -116,6 +124,9 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定key和value的map收集器。（如果说{@link CollectorTool#toMap(Function, Function)}会抛出异常，那么这个方法的最后一个参数就是异常合并处理的参数）
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <U>   泛型
      * @param keyMapper     key的{@link Function}函数式接口
      * @param valueMapper   value的{@link Function}函数式接口
      * @param mergeFunction 合并的函数方法。{@link CollectorTool#toMap(Function, Function)}会抛出异常就是这个参数执行抛出异常导致的。
@@ -129,6 +140,10 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定key和value的map收集器。（如果说{@link CollectorTool#toMap(Function, Function)}会抛出异常，那么这个方法的最后一个参数就是异常合并处理的参数）
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <U>   泛型
+     * @param <M>   继承{@link Map}的泛型
      * @param keyMapper     key的{@link Function}函数式接口
      * @param valueMapper   value的{@link Function}函数式接口
      * @param mergeFunction 合并的函数方法。{@link CollectorTool#toMap(Function, Function)}会抛出异常就是这个参数执行抛出异常导致的。
@@ -143,6 +158,9 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定key和value的ConcurrentMap收集器。（如果key出现重复，那么会抛出异常，因为使用map的merge方法，重复的key设置为抛出异常）
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <U>   泛型
      * @param keyMapper   key的{@link Function}函数式接口
      * @param valueMapper value的{@link Function}函数式接口
      * @return 流数据的ConcurrentMap收集器
@@ -155,6 +173,9 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定key和value的ConcurrentMap收集器。（如果说{@link CollectorTool#toConcurrentMap(Function, Function)}会抛出异常，那么这个方法的最后一个参数就是异常合并处理的参数）
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <U>   泛型
      * @param keyMapper     key的{@link Function}函数式接口
      * @param valueMapper   value的{@link Function}函数式接口
      * @param mergeFunction 合并的函数方法。{@link CollectorTool#toConcurrentMap(Function, Function)}会抛出异常就是这个参数执行抛出异常导致的。
@@ -168,6 +189,10 @@ public class CollectorTool {
     /**
      * 将流数据转换为指定key和value的ConcurrentMap收集器。（如果说{@link CollectorTool#toConcurrentMap(Function, Function)}会抛出异常，那么这个方法的最后一个参数就是异常合并处理的参数）
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <U>   泛型
+     * @param <M>   继承{@link ConcurrentMap}的泛型
      * @param keyMapper     key的{@link Function}函数式接口
      * @param valueMapper   value的{@link Function}函数式接口
      * @param mergeFunction 合并的函数方法。{@link CollectorTool#toConcurrentMap(Function, Function)}会抛出异常就是这个参数执行抛出异常导致的。
@@ -182,6 +207,8 @@ public class CollectorTool {
     /**
      * 将流中的元素按照指定的key进行分组(分组用List集合表示)存储到Map集合中的收集器
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
      * @param classifier 对元素进行分组的函数式方法（函数式方法）
      * @return 将流中的元素按照指定的key进行分组存储到Map集合中的收集器
      * @author :loulan
@@ -193,6 +220,10 @@ public class CollectorTool {
     /**
      * 将流中的元素按照指定的key进行分组(分组用用指定的收集器收集)存储到Map集合中的收集器
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <A>   泛型
+     * @param <D>   泛型
      * @param classifier 对元素进行分组的函数式方法（函数式方法）
      * @param downstream 分组使用的收集器，获取收集方法（就是将相同的key下的元素收集起来的收集器）
      * @return 将流中的元素按照指定的key进行分组存储到Map集合中的收集器
@@ -205,6 +236,11 @@ public class CollectorTool {
     /**
      * 将流中的元素按照指定的key进行分组(分组用用指定的收集器收集)存储mapFactory提供的对象中
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <A>   泛型
+     * @param <D>   泛型
+     * @param <M>   继承{@link Map}的泛型
      * @param classifier 对元素进行分组的函数式方法（函数式方法）
      * @param mapFactory 提供这些分组数据的存储对象（该对象一定是继承了Map集合的）
      * @param downstream 分组使用的收集器，获取收集方法（就是将相同的key下的元素收集起来的收集器）
@@ -219,6 +255,8 @@ public class CollectorTool {
      * 将流中的元素按照指定的key进行分组(分组用List集合表示)存储到ConcurrentMap集合中的收集器。
      * 与{@link CollectorTool#groupingBy(Function)}区别就是返回的集合是线程安全的。
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
      * @param classifier 对元素进行分组的函数式方法（函数式方法）
      * @return 将流中的元素按照指定的key进行分组存储到ConcurrentMap集合中的收集器
      * @author :loulan
@@ -231,6 +269,10 @@ public class CollectorTool {
      * 将流中的元素按照指定的key进行分组(分组用用指定的收集器收集)存储到ConcurrentMap集合中的收集器。
      * 与{@link CollectorTool#groupingBy(Function, Collector)}区别就是返回的集合是线程安全的。
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <A>   泛型
+     * @param <D>   泛型
      * @param classifier 对元素进行分组的函数式方法（函数式方法）
      * @param downstream 分组使用的收集器，获取收集方法（就是将相同的key下的元素收集起来的收集器）
      * @return 将流中的元素按照指定的key进行分组存储到ConcurrentMap集合中的收集器
@@ -244,6 +286,11 @@ public class CollectorTool {
      * 将流中的元素按照指定的key进行分组(分组用用指定的收集器收集)存储mapFactory提供的对象中。
      * 与{@link CollectorTool#groupingBy(Function, Supplier, Collector)}区别就是返回的集合是线程安全的。
      *
+     * @param <T>   泛型
+     * @param <K>   泛型
+     * @param <A>   泛型
+     * @param <D>   泛型
+     * @param <M>   继承{@link ConcurrentMap}的泛型
      * @param classifier 对元素进行分组的函数式方法（函数式方法）
      * @param mapFactory 提供这些分组数据的存储对象（该对象一定是继承了ConcurrentMap集合的）
      * @param downstream 分组使用的收集器，获取收集方法（就是将相同的key下的元素收集起来的收集器）
@@ -257,6 +304,10 @@ public class CollectorTool {
     /**
      * 将流进行维度转换(我更喜欢叫降维)收集的收集器.(类似{@link java.util.stream.Stream#map(Function)}方法)
      *
+     * @param <T>   泛型
+     * @param <U>   泛型
+     * @param <A>   泛型
+     * @param <R>   泛型
      * @param mapper     维度转换方法，其实就是一个函数式方法，将输进去的流元素返回为另一种元素作为流元素
      * @param downstream 对转换维度之后的流元素进行收集的收集器
      * @return 将流进行维度转换(我更喜欢叫降维)收集的收集器
@@ -269,6 +320,7 @@ public class CollectorTool {
     /**
      * 将流中数据进行比较产生最大元素的收集器
      *
+     * @param <T>   泛型
      * @param comparator 比较器
      * @return 将流中数据进行比较产生最大元素的收集器
      * @author :loulan
@@ -280,6 +332,7 @@ public class CollectorTool {
     /**
      * 将流中数据进行比较产生最小元素的收集器
      *
+     * @param <T>   泛型
      * @param comparator 比较器
      * @return 将流中数据进行比较产生最小元素的收集器
      * @author :loulan
@@ -292,6 +345,7 @@ public class CollectorTool {
      * 将流元素按照Boolean分为两组（组为List集合）的收集器。
      * （完全可以使用{@link CollectorTool#groupingBy(Function)}来代替）
      *
+     * @param <T>   泛型
      * @param predicate 进行Boolean判断的函数式方法
      * @return 将流元素按照Boolean分为两组的收集器
      * @author :loulan
@@ -304,6 +358,9 @@ public class CollectorTool {
      * 将流元素按照Boolean分为两组（组为指定的收集器收集）的收集器。
      * （完全可以使用{@link CollectorTool#groupingBy(Function, Collector)}来代替）
      *
+     * @param <T>   泛型
+     * @param <D>   泛型
+     * @param <A>   泛型
      * @param predicate  进行Boolean判断的函数式方法
      * @param downstream 分组使用的收集器，获取收集方法（就是将相同的Boolean下的元素收集起来的收集器）
      * @return 将流元素按照Boolean分为两组的收集器
@@ -316,6 +373,10 @@ public class CollectorTool {
     /**
      * 对收集器进行加工转换的收集器
      *
+     * @param <T>   泛型
+     * @param <A>   泛型
+     * @param <R>   泛型
+     * @param <RR>   泛型
      * @param downstream 内部试用的收集器
      * @param finisher   收集完的数据要进行处理的函数式方法
      * @return 收集器进行加工转换的收集器
@@ -328,6 +389,7 @@ public class CollectorTool {
     /**
      * 进行累积操操作的收集器。（类似于{@link java.util.stream.Stream#reduce(BinaryOperator)}）
      *
+     * @param <T>   泛型
      * @param op 进行累积操作的函数式方法
      * @return 累积操操作的收集器
      * @author :loulan
@@ -339,6 +401,7 @@ public class CollectorTool {
     /**
      * 给定指定类型初始累积变量进行累积操操作的收集器。（类似于{@link java.util.stream.Stream#reduce(Object, BinaryOperator)}）
      *
+     * @param <T>   泛型
      * @param identity 进行累积操作给定的初始变量（指定类型，也是流数据类型）
      * @param op       进行累积操作的函数式方法
      * @return 累积操操作的收集器
@@ -351,6 +414,8 @@ public class CollectorTool {
     /**
      * 给定任意类型初始累积变量进行累积操操作的收集器。
      *
+     * @param <T>   泛型
+     * @param <U>   泛型
      * @param identity 进行累积操作给定的初始变量（任意类型）
      * @param mapper   由流数据类型转换为任意数据类型的映射方法
      * @param op       进行累积操作的函数式方法
@@ -364,6 +429,7 @@ public class CollectorTool {
     /**
      * double类型的计算器收集器
      *
+     * @param <T>   泛型
      * @param mapper 流数据到double类型的映射函数
      * @return double类型的计算器收集器
      * @author :loulan
@@ -375,6 +441,7 @@ public class CollectorTool {
     /**
      * Integer类型的计算器收集器
      *
+     * @param <T>   泛型
      * @param mapper 流数据到Integer类型的映射函数
      * @return Integer类型的计算器收集器
      * @author :loulan
@@ -386,6 +453,7 @@ public class CollectorTool {
     /**
      * Long类型的计算器收集器
      *
+     * @param <T>   泛型
      * @param mapper 流数据到Long类型的映射函数
      * @return Long类型的计算器收集器
      * @author :loulan
@@ -397,6 +465,7 @@ public class CollectorTool {
     /**
      * Double类型的求和收集器
      *
+     * @param <T>   泛型
      * @param mapper 流数据到Double类型的映射函数
      * @return Double类型的求和收集器
      * @author :loulan
@@ -408,6 +477,7 @@ public class CollectorTool {
     /**
      * Integer类型的求和收集器
      *
+     * @param <T>   泛型
      * @param mapper 流数据到Integer类型的映射函数
      * @return Integer类型的求和收集器
      * @author :loulan
@@ -419,6 +489,7 @@ public class CollectorTool {
     /**
      * Long类型的求和收集器
      *
+     * @param <T>   泛型
      * @param mapper 流数据到Long类型的映射函数
      * @return Long类型的求和收集器
      * @author :loulan
@@ -430,6 +501,7 @@ public class CollectorTool {
     /**
      * 将流数据转换为double类型平均值的收集器
      *
+     * @param <T>   泛型
      * @param mapper 转换为double的函数式方法（函数式方法）
      * @return 流数据的double收集器
      * @author :loulan
@@ -441,6 +513,7 @@ public class CollectorTool {
     /**
      * 将流数据转换为Int类型平均值的收集器
      *
+     * @param <T>   泛型
      * @param mapper 转换为int的函数式方法（函数式方法）
      * @return 流数据的int收集器
      * @author :loulan
@@ -452,6 +525,7 @@ public class CollectorTool {
     /**
      * 将流数据转换为Long类型平局之的收集器
      *
+     * @param <T>   泛型
      * @param mapper 转换为Loing的函数式方法（函数式方法）
      * @return 流数据的Long收集器
      * @author :loulan
@@ -463,6 +537,7 @@ public class CollectorTool {
     /**
      * 统计流中元素的个数
      *
+     * @param <T>   泛型
      * @return 流中元素个数
      * @author :loulan
      */
