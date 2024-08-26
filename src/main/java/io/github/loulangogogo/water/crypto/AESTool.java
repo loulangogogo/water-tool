@@ -84,6 +84,11 @@ public class AESTool {
      * @param mode 工作模式{@link MODE}
      * @param pad  填充方式{@link PADDING}
      * @return 加密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
      * @author :loulan
      */
     public static byte[] encrypt(String key, byte[] data, String mode, String pad) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
@@ -98,6 +103,11 @@ public class AESTool {
      * @param key  密钥
      * @param data 需要加密的数据
      * @return 解密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
      * @author :loulan
      */
     public static byte[] encrypt(String key, byte[] data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
@@ -110,6 +120,11 @@ public class AESTool {
      * @param key  密钥
      * @param data 需要加密的数据
      * @return 解密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
      * @author :loulan
      */
     public static String encrypt(String key, String data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
@@ -124,6 +139,11 @@ public class AESTool {
      * @param mode 工作模式{@link MODE}
      * @param pad  填充方式{@link PADDING}
      * @return 解密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
      * @author :loulan
      */
     public static byte[] decrypt(String key, byte[] data, String mode, String pad) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
@@ -138,6 +158,11 @@ public class AESTool {
      * @param key  密钥
      * @param data 需要解密的数据
      * @return 解密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
      * @author :loulan
      */
     public static byte[] decrypt(String key, byte[] data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
@@ -150,6 +175,11 @@ public class AESTool {
      * @param key  密钥
      * @param data 需要解密的数据
      * @return 解密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
      * @author :loulan
      */
     public static String decrypt(String key, String data) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {

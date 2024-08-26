@@ -116,6 +116,12 @@ public class RSATool {
      * @param data      要进行加密的数据
      * @param publicKey 公钥
      * @return 加密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static String encrypt(String data, PublicKey publicKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
@@ -149,6 +155,12 @@ public class RSATool {
      * @param data       要进行解密的数据
      * @param privateKey 私钥
      * @return 解密后的数据
+     * @throws NoSuchPaddingException 未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException 填充错误异常
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static String decrypt(String data, PrivateKey privateKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
@@ -180,7 +192,12 @@ public class RSATool {
      * 进行签名 (因为签名比验证签名重要，所以签名采用私钥)
      *
      * @param data 要进行签名的数据
-     * @return privateKey 私钥
+     * @param privateKey 私钥
+     * @return 签名
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     * @throws SignatureException 签名异常
      * @author :loulan
      */
     public static String sign(String data, PrivateKey privateKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
@@ -198,6 +215,10 @@ public class RSATool {
      * @param encodeSign 被签名的数据
      * @param publicKey  公钥
      * @return 签名是否正确
+     * @throws NoSuchAlgorithmException 未找到指定算法异常
+     * @throws InvalidKeyException 密钥无效异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     * @throws SignatureException 签名异常
      * @author :loulan
      */
     public static boolean verifySign(String data, String encodeSign, PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
