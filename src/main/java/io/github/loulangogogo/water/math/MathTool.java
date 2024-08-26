@@ -13,7 +13,7 @@ import java.util.Map;
 public class MathTool {
 
     /**
-     * 生成一个[0,1)之间的随机数<br/>
+     * 生成一个[0,1)之间的随机数<br>
      * 注意不包含1
      *
      * @return 生成一个[0, 1)之间的随机数
@@ -24,7 +24,7 @@ public class MathTool {
     }
 
     /**
-     * 生成一个[0,range)的随机数<br/>
+     * 生成一个[0,range)的随机数<br>
      * 注意不包含range
      *
      * @param range 指定的随机范围
@@ -37,7 +37,7 @@ public class MathTool {
     }
 
     /**
-     * 生成[startRange,endRange)范围内的随机数<br/>
+     * 生成[startRange,endRange)范围内的随机数<br>
      * 注意不包含endRange
      *
      * @param startRange 开始范围
@@ -53,7 +53,7 @@ public class MathTool {
     }
 
     /**
-     * 生成一个[0,range)的随机数<br/>
+     * 生成一个[0,range)的随机数<br>
      * 注意不包含range
      *
      * @param range 指定的随机范围
@@ -66,7 +66,7 @@ public class MathTool {
     }
 
     /**
-     * 生成[startRange,endRange)范围内的随机数<br/>
+     * 生成[startRange,endRange)范围内的随机数<br>
      * 注意不包含endRange
      *
      * @param startRange 开始范围
@@ -82,7 +82,7 @@ public class MathTool {
     }
 
     /**
-     * 生成一个[0,range)的随机正整数<br/>
+     * 生成一个[0,range)的随机正整数<br>
      * 注意不包含range
      *
      * @param range 指定的随机范围
@@ -95,7 +95,7 @@ public class MathTool {
     }
 
     /**
-     * 生成[startRange,endRange)范围内的随机正整数<br/>
+     * 生成[startRange,endRange)范围内的随机正整数<br>
      * 注意不包含endRange
      *
      * @param startRange 开始范围
@@ -111,14 +111,14 @@ public class MathTool {
     }
 
     /**
-     * 根据权重获取对应的数据<br/>
-     * 把所有的权重求和，然后根据总权重生成范围内的随机数，判断随机数据是哪个权重范围下的。<br/>
-     * 比如权重为 A=10，B=20，C=30，D=40<br/>
-     * 那么随机数[0-10)属于A，[10,30)属于B，[30,60)属于C,[60,100)属于D，<br/>
-     * 所以随机数 random 小于 10 属于A<br/>
-     * random 小于 (10+20) 属于B<br/>
-     * random 小于 (10+20+30) 属于C<br/>
-     * random 小于 (10+20+30+40) 属于D<br/>
+     * 根据权重获取对应的数据<br>
+     * 把所有的权重求和，然后根据总权重生成范围内的随机数，判断随机数据是哪个权重范围下的。<br>
+     * 比如权重为 A=10，B=20，C=30，D=40<br>
+     * 那么随机数[0-10)属于A，[10,30)属于B，[30,60)属于C,[60,100)属于D，<br>
+     * 所以随机数 random 小于 10 属于A<br>
+     * random 小于 (10+20) 属于B<br>
+     * random 小于 (10+20+30) 属于C<br>
+     * random 小于 (10+20+30+40) 属于D<br>
      *
      * @param weightRandom 权重对象数据
      * @return 根据数据的权重随机获取数据
@@ -140,14 +140,14 @@ public class MathTool {
     }
 
     /**
-     * 根据权重百分概率获取对应概率数据，概率权重总和不能超过100%。如果概率权重总和小于100，那么剩余概率返回null<br/>
-     * 把所有的权重求和，然后根据总权重生成范围内的随机数，判断随机数据是哪个权重范围下的。<br/>
-     * 比如权重为 A=10，B=20，C=30，D=30<br/>
-     * 那么随机数[0-10)属于A，[10,30)属于B，[30,60)属于C,[60,90)属于D，[90,100)属于null<br/>
-     * 所以随机数 random 小于 10 属于A<br/>
-     * random 小于 (10+20) 属于B<br/>
-     * random 小于 (10+20+30) 属于C<br/>
-     * random 小于 (10+20+30+30) 属于D<br/>
+     * 根据权重百分概率获取对应概率数据，概率权重总和不能超过100%。如果概率权重总和小于100，那么剩余概率返回null<br>
+     * 把所有的权重求和，然后根据总权重生成范围内的随机数，判断随机数据是哪个权重范围下的。<br>
+     * 比如权重为 A=10，B=20，C=30，D=30<br>
+     * 那么随机数[0-10)属于A，[10,30)属于B，[30,60)属于C,[60,90)属于D，[90,100)属于null<br>
+     * 所以随机数 random 小于 10 属于A<br>
+     * random 小于 (10+20) 属于B<br>
+     * random 小于 (10+20+30) 属于C<br>
+     * random 小于 (10+20+30+30) 属于D<br>
      * 其余的返回null
      *
      * @param weightRandom 权重对象数据
