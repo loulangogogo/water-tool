@@ -12,7 +12,7 @@ import java.util.Optional;
 
 /*********************************************************
  ** 反射工具类
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -108,6 +108,7 @@ public class ReflectTool {
     /**
      * 获取类的指定参数的构造方法，并设置可自动访问
      *
+     * @param <T>            泛型
      * @param clzz           获取构造方法的类
      * @param parameterTypes 参数类型
      * @return 构造对象
@@ -206,6 +207,7 @@ public class ReflectTool {
     /**
      * 执行指定对象的指定方法对象
      *
+     * @param <T>    泛型
      * @param obj    要被执行方法的对象
      * @param method 要被执行的方法对象
      * @param args   方法对应的参数
@@ -224,9 +226,11 @@ public class ReflectTool {
     /**
      * 执行指定对象的指定方法对象
      *
+     * @param <T>        泛型
      * @param obj        要被执行方法的对象
      * @param methodName 方法对象的名称
      * @param args       方法对应的参数
+     * @param paramTypes 参数类型
      * @return 方法返回值
      * @author :loulan
      */

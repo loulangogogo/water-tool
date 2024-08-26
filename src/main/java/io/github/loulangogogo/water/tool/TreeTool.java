@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 /*********************************************************
  ** 树工具
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -42,6 +42,7 @@ public class TreeTool {
     /**
      * Description :将List集合转化为List树集合(单线程组合树),有指定的父级值
      *
+     * @param <T>        泛型
      * @param objectList 数据
      * @param pidValue   顶级父类的pid的值（一般为-1）
      * @return 树的Map集合
@@ -81,6 +82,7 @@ public class TreeTool {
     /**
      * Description :将List集合转化为List树集合(多线程组合树),有指定的父级值
      *
+     * @param <T>        泛型
      * @param objectList 数据
      * @param pidValue   顶级父类的pid的值（一般为-1）
      * @return 树的Map集合

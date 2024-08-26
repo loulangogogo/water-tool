@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 /*********************************************************
  ** 线程池工具
  * 当前线程池工具采用的同步阻塞队列，无限最大线程
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -72,6 +72,7 @@ public class ThreadPoolTool {
     /**
      * 执行有返回值的异步方法
      *
+     * @param <T>  泛型
      * @param task 任务线程
      * @return {@link Future}对象
      * @author :loulan

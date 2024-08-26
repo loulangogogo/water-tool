@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /*********************************************************
  ** 线程的工具类
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -29,6 +29,7 @@ public class ThreadTool {
     /**
      * 执行有返回值的异步方法
      *
+     * @param <T>  泛型
      * @param task 任务线程
      * @return {@link Future}对象
      * @author :loulan
@@ -62,11 +63,11 @@ public class ThreadTool {
     /**
      * 线程休眠。
      *
-     * @param amount 休眠时间
+     * @param amount   休眠时间
      * @param timeUnit 时间单位
      * @author :loulan
      */
-    public static void sleep(long amount,TimeUnit timeUnit) {
+    public static void sleep(long amount, TimeUnit timeUnit) {
         try {
             ThreadUtils.sleep(DurationUtils.toDuration(amount, timeUnit));
         } catch (InterruptedException e) {

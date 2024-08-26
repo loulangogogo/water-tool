@@ -9,7 +9,7 @@ import java.util.Map;
 
 /*********************************************************
  ** Map集合工具类
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -40,6 +40,7 @@ public class MapTool {
     /**
      * Description :将map集合中的key的字符串中下滑先转换为驼峰式的
      *
+     * @param <T> 泛型
      * @param map 需要进行转换的map集合
      * @return 转换完成的map集合
      * @author :loulan
@@ -54,6 +55,8 @@ public class MapTool {
     /**
      * 创建一个默认的map对象{@link HashMap}
      *
+     * @param <R> 泛型
+     * @param <T> 泛型
      * @return 默认的map对象
      * @author :loulan
      */
@@ -64,8 +67,10 @@ public class MapTool {
     /**
      * 根据key，value生成一个map{@link HashMap}集合
      *
-     * @param k key
-     * @param v value
+     * @param <K> 泛型
+     * @param <V> 泛型
+     * @param k   key
+     * @param v   value
      * @return 包含一个值的map集合
      * @author :loulan
      */
