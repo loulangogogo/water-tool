@@ -17,6 +17,7 @@ public class SerializeTool {
     /**
      * Description :通过序列化方式进行克隆，该方法必须要实现{@link Serializable}接口
      *
+     * @param <T>   泛型
      * @param obj 要进行克隆的对象
      * @return 克隆之后的对象
      * @author :loulan
@@ -50,6 +51,7 @@ public class SerializeTool {
     /**
      * Description :将byte数组进行反序列化为一个对象
      *
+     * @param <T>   泛型
      * @param objectData 要进行反序列化的byte数组
      * @return 反序列化后的对象
      * @author :loulan
@@ -61,6 +63,7 @@ public class SerializeTool {
     /**
      * Description :将一个输入流反序列化为一个对象
      *
+     * @param <T>   泛型
      * @param inputStream 要进行反序列化的输入流
      * @return 反序列化后的对象
      * @author :loulan

@@ -66,6 +66,7 @@ public class BeanTool {
      * 将对象属性复制为一个map集合对象，功能等同于{@link BeanTool#copy(Object)}
      *
      * @param source 复制的源对象（只能是bean对象）
+     * @return Map集合对象
      * @author :loulan
      */
     public static Map<String, Object> copy(Object source) {
@@ -75,6 +76,7 @@ public class BeanTool {
     /**
      * 将源对象属性复制到目标类的对象里
      *
+     * @param <T>   泛型
      * @param source 复制的源对象（可以是bean对象，也可以是Map集合）
      * @param clzz   目标对象的类（必须是可以实例化的bean的类对象）
      * @return class类文件对应的对象
@@ -98,6 +100,7 @@ public class BeanTool {
      * 可以使用owner-json里面的【io.gitee.loulan_yxq.owner.json.bean.JsonBeanTool】
      * 工具类进行map到对象的转化。
      *
+     * @param <T>   泛型
      * @param source 复制的源对象
      * @param clzz   目标对象的类（必须是可以实例化的bean的类对象）
      * @return class类文件对应的对象
@@ -111,6 +114,7 @@ public class BeanTool {
      * 将一个对象(Map对象)的List集合转化为另一个对象(bean)的List集合<br>
      * 还有一个{@link BeanTool#fastCopy(List, Class)}方法也可以实现这个共能，它们的区别是fastCopy更快但是集合对象顺序会乱，copy的满一些但顺序不会乱。
      *
+     * @param <T>   泛型
      * @param source list的源对象(可以是bean对象，也可以是Map对象)
      * @param clzz   目标对象的类对象（只能是bean对象的类对象）
      * @return 目标对象的list集合
@@ -125,6 +129,7 @@ public class BeanTool {
     /**
      * 将一个对象(Map对象)的Set集合转化为另一个对象(bean)的Set集合<br>
      *
+     * @param <T>   泛型
      * @param source set的源对象(可以是bean对象，也可以是Map对象)
      * @param clzz   目标对象的类对象（只能是bean对象的类对象）
      * @return 目标对象的set集合
@@ -178,6 +183,7 @@ public class BeanTool {
     /**
      * 将一个对象(Map对象)的List集合转化为另一个对象(bean)的List集合(速度比{@link BeanTool#copy(List, Class)}的快)
      *
+     * @param <T>   泛型
      * @param source list的源对象(可以是bean对象，也可以是Map对象)
      * @param clzz   目标对象的类对象(只能bean对象)
      * @return 目标对象的list集合
@@ -248,6 +254,7 @@ public class BeanTool {
      * 可以使用owner-json里面的【io.gitee.loulan_yxq.owner.json.bean.JsonBeanTool】
      * 工具类进行map到对象的转化。
      *
+     * @param <T>   泛型
      * @param sourceMap 复制的源对象
      * @param clzz      目标对象的类（只能是bean对象的类对象）
      * @return class类文件对应的对象
@@ -267,6 +274,7 @@ public class BeanTool {
     /**
      * 集合对象的转换（一个集合对象转化为另一个对象的集合）
      *
+     * @param <T>   泛型
      * @param datas  源对象集合
      * @param target 目标集合
      * @param clzz   目标对象的类对象

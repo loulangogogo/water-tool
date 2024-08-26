@@ -41,6 +41,7 @@ public class CollectionTool {
     /**
      * 获取一个默认的List集合
      *
+     * @param <T> 泛型
      * @return 返回一个默认的list集合
      * @author :loulan
      */
@@ -51,6 +52,7 @@ public class CollectionTool {
     /**
      * 获取一个默认的set集合
      *
+     * @param <T> 泛型
      * @return 返回一个默认的set集合
      * @author :loulan
      */
@@ -61,6 +63,7 @@ public class CollectionTool {
     /**
      * 返回一个arrayList集合
      *
+     * @param <T> 泛型
      * @return 返回一个arrayList集合
      * @author :loulan
      */
@@ -71,6 +74,7 @@ public class CollectionTool {
     /**
      * 返回一个LinkedList的集合
      *
+     * @param <T> 泛型
      * @return 返回一个LinkedList的集合
      * @author :loulan
      */
@@ -81,6 +85,7 @@ public class CollectionTool {
     /**
      * 返回一个HashSet集合
      *
+     * @param <T> 泛型
      * @return 返回一个HashSet集合
      * @author :loulan
      */
@@ -91,6 +96,7 @@ public class CollectionTool {
     /**
      * 返回一个LinkedHashSet集合
      *
+     * @param <T> 泛型
      * @return 返回一个LinkedHashSet集合
      * @author :loulan
      */

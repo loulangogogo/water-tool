@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 /*********************************************************
  ** Collection集合类工具,继承了CollectionTool工具类
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -20,6 +20,7 @@ public class CollTool extends CollectionTool {
     /**
      * 移除重复内容
      *
+     * @param <T>   泛型
      * @param tList 要进行重复数据移除的集合对象
      * @param keyFn 要进行去重的属性关键字函数表达式
      * @return 移除重复数据之后的集合对象
@@ -32,6 +33,7 @@ public class CollTool extends CollectionTool {
     /**
      * 移除重复内容
      *
+     * @param <T>    泛型
      * @param tList  要进行重复数据移除的集合对象
      * @param keyFn  要进行去重的属性关键字函数表达式
      * @param isFast 是否快速移除，采用parallelStream的方式
@@ -53,6 +55,8 @@ public class CollTool extends CollectionTool {
     /**
      * 留下重复内容
      *
+     * @param <T>   泛型
+     * @param <R>   泛型
      * @param tList 要进行重复数据留取的集合对象
      * @param keyFn 要进行去重的属性关键字函数表达式
      * @return 留取重复数据之后的集合对象
@@ -65,6 +69,8 @@ public class CollTool extends CollectionTool {
     /**
      * 留下重复内容
      *
+     * @param <T>    泛型
+     * @param <R>    泛型
      * @param tList  要进行重复数据留取的集合对象
      * @param keyFn  要进行去重的属性关键字函数表达式
      * @param isFast 是否快速移除，采用parallelStream的方式
@@ -84,7 +90,8 @@ public class CollTool extends CollectionTool {
     /**
      * 将数组对象转换为List集合
      *
-     * @param t 数组对象
+     * @param <T> 泛型
+     * @param t   数组对象
      * @return list集合
      * @author :loulan
      */

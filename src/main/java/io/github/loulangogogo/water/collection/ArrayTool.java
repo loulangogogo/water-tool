@@ -18,7 +18,8 @@ public class ArrayTool {
     /**
      * 将数组对象转换为List集合
      *
-     * @param t 数组对象
+     * @param <T> 泛型
+     * @param t   数组对象
      * @return list集合
      * @author :loulan
      */
@@ -33,6 +34,7 @@ public class ArrayTool {
     /**
      * 获取指定数据的数组对象
      *
+     * @param <T> 泛型
      * @param obj 指定的数据
      * @return 数组对象
      * @author :loulan
@@ -44,6 +46,7 @@ public class ArrayTool {
     /**
      * 判断数组是否为空
      *
+     * @param <T>   泛型
      * @param array 要进行判断的数组
      * @return 数组是否为空
      * @author :loulan
@@ -59,6 +62,7 @@ public class ArrayTool {
     /**
      * 判断数组是否不为空
      *
+     * @param <T>   泛型
      * @param array 要进行判断的数组
      * @return 数组是否不为空
      * @author :loulan
@@ -70,6 +74,7 @@ public class ArrayTool {
     /**
      * 获取流对象
      *
+     * @param <T>   泛型
      * @param array 目标数组
      * @return 转换完成的流对象
      * @author :loulan
@@ -84,6 +89,7 @@ public class ArrayTool {
     /**
      * 获取并行流对象
      *
+     * @param <T>   泛型
      * @param array 目标数组
      * @return 转换完成的并行流对象
      * @author :loulan
@@ -98,6 +104,7 @@ public class ArrayTool {
     /**
      * 数组添加元素，合并生成新数组(并不是真的在原来的数组上添加元素，而是生成一个新的数组来包含所有元素)
      *
+     * @param <T>     泛型
      * @param arr     要添加元素的素组
      * @param element 要添加的元素
      * @return 添加之后生成的新数组
@@ -113,6 +120,7 @@ public class ArrayTool {
     /**
      * 数组添加元素，合并生成新数组(并不是真的在原来的数组上添加元素，而是生成一个新的数组来包含所有元素)
      *
+     * @param <T>      泛型
      * @param arr      要添加元素的素组
      * @param elements 要添加的元素
      * @return 添加之后生成的新数组
