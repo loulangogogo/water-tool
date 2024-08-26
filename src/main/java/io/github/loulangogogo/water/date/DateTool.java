@@ -238,6 +238,7 @@ public class DateTool {
      * 转换为指定时区Calendear类型
      *
      * @param date 要进行转换的日期
+     * @param tz 时区
      * @return {@link Calendar}对象
      * @author :loulan
      */

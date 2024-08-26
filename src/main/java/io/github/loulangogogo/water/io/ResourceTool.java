@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
 
 /*********************************************************
  ** 资源工具类
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -22,6 +22,7 @@ public class ResourceTool {
      *
      * @param resource 资源在classpath下的路径
      * @return 资源的输入流, 如果资源不存在返回null
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static InputStream getInputStream(String resource) throws IOException {
@@ -34,6 +35,8 @@ public class ResourceTool {
      *
      * @param resource 资源在classpath下的路径
      * @return File文件对象, 如果资源不存在就返回null
+     * @throws IOException        IO异常
+     * @throws URISyntaxException URI语法异常
      * @author :loulan
      */
     public static File getFile(String resource) throws IOException, URISyntaxException {
@@ -46,6 +49,7 @@ public class ResourceTool {
      *
      * @param resource 资源在classpath下的路径
      * @return 资源的URL, 如果资源不存在返回null
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static URL getResource(String resource) throws IOException {
@@ -58,6 +62,7 @@ public class ResourceTool {
      * @param resource    资源在classpath下的路径
      * @param classLoader 类加载器
      * @return 资源的URL, 如果资源不存在返回null
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static URL getResource(String resource, ClassLoader classLoader) throws IOException {
@@ -70,6 +75,7 @@ public class ResourceTool {
      * @param resource 资源在classpath下的路径
      * @param charset  编码方式
      * @return 资源的内容，如果资源不存在则返回null
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static String readStr(String resource, Charset charset) throws IOException {
@@ -83,6 +89,7 @@ public class ResourceTool {
      * @param charset     编码方式
      * @param classLoader 类加载器
      * @return 资源的内容，如果资源不存在则返回null
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static String readStr(String resource, Charset charset, ClassLoader classLoader) throws IOException {
@@ -96,6 +103,7 @@ public class ResourceTool {
      *
      * @param resource 资源在classpath下的路径
      * @return 资源的字节数组数据, 如果资源不存在返回null
+     * @throws IOException IO异常
      * @author :loulan
      */
     public static byte[] readBytes(String resource) throws IOException {
@@ -108,6 +116,7 @@ public class ResourceTool {
      * @param resource    资源在classpath下的路径
      * @param classLoader 类加载器
      * @return 资源的字节数组数据, 如果资源不存在返回null
+     * @throws IOException IO
      * @author :loulan
      */
     public static byte[] readBytes(String resource, ClassLoader classLoader) throws IOException {

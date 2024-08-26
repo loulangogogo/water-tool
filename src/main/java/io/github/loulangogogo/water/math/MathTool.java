@@ -6,7 +6,7 @@ import java.util.Map;
 
 /*********************************************************
  ** 数学工具
- ** 
+ **
  ** @author 楼兰
  ** @since 8
  *********************************************************/
@@ -120,6 +120,7 @@ public class MathTool {
      * random 小于 (10+20+30) 属于C<br>
      * random 小于 (10+20+30+40) 属于D<br>
      *
+     * @param <K>          泛型
      * @param weightRandom 权重对象数据
      * @return 根据数据的权重随机获取数据
      * @author :loulan
@@ -150,6 +151,7 @@ public class MathTool {
      * random 小于 (10+20+30+30) 属于D<br>
      * 其余的返回null
      *
+     * @param <K>          泛型
      * @param weightRandom 权重对象数据
      * @return 根据数据的权重概率随机获取数据
      * @author :loulan
@@ -157,7 +159,7 @@ public class MathTool {
     public static <K> K randomPercent(WeightRandom<K> weightRandom) {
         AssertTool.notNull(weightRandom, "参数不能为空！");
         double range = weightRandom.sum();
-        AssertTool.isTrue(range <= 100,"权重百分总和不能大于100");
+        AssertTool.isTrue(range <= 100, "权重百分总和不能大于100");
         double random = random(100);
         double initValue = 0;
         for (Map.Entry<K, Number> entry : weightRandom.getData().entrySet()) {

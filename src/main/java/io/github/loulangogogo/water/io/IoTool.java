@@ -9,7 +9,7 @@ import java.io.*;
 
 /*********************************************************
  ** io工具类
- ** 
+ **
  ** @author 楼兰
  ** @since 8
  *********************************************************/
@@ -40,6 +40,7 @@ public class IoTool {
      *
      * @param inputStream  输入流
      * @param outputStream 输出流
+     * @throws IOException io异常
      * @author :loulan
      */
     public static void copy(InputStream inputStream, OutputStream outputStream) throws IOException {

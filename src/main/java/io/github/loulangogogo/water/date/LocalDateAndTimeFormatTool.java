@@ -15,6 +15,7 @@ public class LocalDateAndTimeFormatTool {
      * 将本地时间转换为指定的格式
      *
      * @param temporalAccessor 本地日期或者时间
+     * @param pattern 转换格式
      * @return 格式化后的日期
      * @author :loulan
      */
@@ -26,6 +27,7 @@ public class LocalDateAndTimeFormatTool {
      * 将毫秒值转换为指定的格式
      *
      * @param millis 毫秒值
+     * @param pattern 转换格式
      * @return 格式化后的日期
      * @author :loulan
      */
