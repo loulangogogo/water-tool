@@ -10,6 +10,13 @@
     <description>上善若水，水善利万物而不争，处众人之所恶，故几于道。</description>
     <url>https://github.com/loulangogogo/water-tool.git</url>
 
+    <!--
+    mvn versions:set -DnewVersion=1.2.1
+    mvn versions:set -DnewVersion=1.4-SNAPSHOT
+    mvn versions:revert
+    mvn versions:commit
+    -->
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
