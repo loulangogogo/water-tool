@@ -19,8 +19,8 @@
 -->
 <Configuration status="INFO">
   <Appenders>
-    <Console name="console" target="SYSTEM_ERR">
-      <PatternLayout pattern="%-5p [%t] %d{HH:mm:ss,SSS} %c %m%n" />
+    <Console name="console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy/MM/dd HH:mm:ss.SSS} [%t] %-5level %logger{36} ===> %msg%n" />
     </Console>
   </Appenders>
   <Loggers>
