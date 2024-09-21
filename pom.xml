@@ -28,6 +28,13 @@
         <commons-codec.version>1.17.1</commons-codec.version>
         <tika-core.version>2.9.2</tika-core.version>
 
+        <!--json工具-->
+        <jackson.version>2.17.2</jackson.version>
+
+        <!--日志使用-->
+        <slf4j.version>2.0.16</slf4j.version>
+        <!--单元测试使用-->
+        <junit.version>4.13.2</junit.version>
 
         <!--打包使用-->
         <central-publishing-maven.version>0.5.0</central-publishing-maven.version>
@@ -35,15 +42,6 @@
         <maven-source.version>3.3.1</maven-source.version>
         <maven-javadoc.version>3.8.0</maven-javadoc.version>
         <maven-gpg.version>3.2.5</maven-gpg.version>
-
-        <!--json工具-->
-        <jackson.version>2.17.2</jackson.version>
-
-        <!--日志使用-->
-        <slf4j.version>2.0.16</slf4j.version>
-        <log4j.version>2.23.1</log4j.version>
-        <!--单元测试使用-->
-        <junit.version>4.13.2</junit.version>
     </properties>
 
     <dependencies>
@@ -91,6 +89,19 @@
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!--日志使用-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- 全局单元测试 -->
