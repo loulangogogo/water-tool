@@ -6,8 +6,6 @@ import io.github.loulangogogo.water.map.MapTool;
 import io.github.loulangogogo.water.stream.CollectorTool;
 import io.github.loulangogogo.water.tool.AssertTool;
 import io.github.loulangogogo.water.tool.ObjectTool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -22,8 +20,6 @@ import java.util.Map;
  ** @since 8
  *********************************************************/
 class BeanPropertiesTool {
-    // 进行日志打印使用
-    private static final Logger LOG = LoggerFactory.getLogger(BeanPropertiesTool.class);
 
     /**
      * 将对象属性复制到map集合中
