@@ -1,12 +1,10 @@
 package io.github.loulangogogo.water.io;
 
-import io.github.loulangogogo.water.enums.FileMagic;
 import io.github.loulangogogo.water.tool.ObjectTool;
 import io.github.loulangogogo.water.tool.StrTool;
 import org.apache.tika.Tika;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
 /*********************************************************
@@ -17,31 +15,8 @@ import java.io.InputStream;
  *********************************************************/
 public class FileTool {
 
-    /**
-     * 获取文件的魔数。
-     * 【判断文件的类型，即使用户修改了文件后缀，也能正确读取】
-     *
-     * @param file 文件
-     * @return 文件魔数枚举
-     * @throws IOException io异常
-     * @author :loulan
-     */
-    public static FileMagic getFileMagic(File file) throws IOException {
-        return FileMagic.valueOf(file);
-    }
-
-    /**
-     * 获取流数据文件的魔数。
-     * 【判断文件的类型，即使用户修改了文件后缀，也能正确读取】
-     *
-     * @param ins 流数据
-     * @return 文件魔数枚举
-     * @throws IOException io异常
-     * @author :loulan
-     */
-    public static FileMagic getFileMagic(InputStream ins) throws IOException {
-        return FileMagic.valueOf(ins);
-    }
+    // 文件类型的检测对象tika
+    private static final Tika tika = new Tika();
 
     /**
      * 获取文件名
@@ -121,15 +96,15 @@ public class FileTool {
     }
 
     /**
-     * 获取输入流文件内容类型
+     * 获取输入流文件内容类型(org.apache.tika.mime.tika-mimetypes.xml)
      *
      * @param inputStream 输入流
-     * @return 类型，返回值如： image/jpeg
+     * @return 类型，返回值如： image/jpeg(org.apache.tika.mime.tika-mimetypes.xml)
      * @author :loulan
      */
     public static String getFileMimeType(InputStream inputStream) {
         try {
-            String detect = new Tika().detect(inputStream);
+            String detect = tika.detect(inputStream);
             return detect;
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -137,15 +112,15 @@ public class FileTool {
     }
 
     /**
-     * 获取文件的内容类型
+     * 获取文件的内容类型 (org.apache.tika.mime.tika-mimetypes.xml)
      *
      * @param file 文件对象
-     * @return 类型，返回值如： image/jpeg
+     * @return 类型，返回值如： image/jpeg (org.apache.tika.mime.tika-mimetypes.xml)
      * @author :loulan
      */
     public static String getFileMimeType(File file) {
         try {
-            String detect = new Tika().detect(file);
+            String detect = tika.detect(file);
             return detect;
         } catch (Exception ex) {
             throw new RuntimeException(ex);

@@ -38,13 +38,25 @@ public class IoTool {
     /**
      * 将输入流复制到输出流
      *
-     * @param inputStream  输入流
-     * @param outputStream 输出流
+     * @param source 输入流
+     * @param target 输出流
      * @throws IOException io异常
      * @author :loulan
      */
-    public static void copy(InputStream inputStream, OutputStream outputStream) throws IOException {
-        IOUtils.copy(inputStream, outputStream);
+    public static void copy(InputStream source, OutputStream target) throws IOException {
+        IOUtils.copy(source, target);
+    }
+
+    /**
+     * 将ByteArrayOutputStream转换为InputStream
+     *
+     * @param source {@link ByteArrayOutputStream}输出流
+     * @return {@link InputStream}输入流
+     * @throws IOException io异常
+     * @author :loulan
+     */
+    public static InputStream copy(ByteArrayOutputStream source) throws IOException {
+        return IOUtils.copy(source);
     }
 
     /**

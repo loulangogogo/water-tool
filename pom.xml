@@ -6,9 +6,16 @@
 
     <groupId>io.github.loulangogogo</groupId>
     <artifactId>water-tool</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.4</version>
     <description>上善若水，水善利万物而不争，处众人之所恶，故几于道。</description>
     <url>https://github.com/loulangogogo/water-tool.git</url>
+
+    <!--
+    mvn versions:set -DnewVersion=1.2.1
+    mvn versions:set -DnewVersion=1.4-SNAPSHOT
+    mvn versions:revert
+    mvn versions:commit
+    -->
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -21,18 +28,20 @@
         <commons-codec.version>1.17.1</commons-codec.version>
         <tika-core.version>2.9.2</tika-core.version>
 
+        <!--json工具-->
+        <jackson.version>2.17.2</jackson.version>
+
+        <!--日志使用-->
+        <slf4j.version>2.0.16</slf4j.version>
+        <!--单元测试使用-->
+        <junit.version>4.13.2</junit.version>
+
         <!--打包使用-->
         <central-publishing-maven.version>0.5.0</central-publishing-maven.version>
         <maven-compiler.version>3.13.0</maven-compiler.version>
         <maven-source.version>3.3.1</maven-source.version>
         <maven-javadoc.version>3.8.0</maven-javadoc.version>
         <maven-gpg.version>3.2.5</maven-gpg.version>
-
-        <!--日志使用-->
-        <slf4j.version>2.0.16</slf4j.version>
-        <log4j.version>2.23.1</log4j.version>
-        <!--单元测试使用-->
-        <junit.version>4.13.2</junit.version>
     </properties>
 
     <dependencies>
@@ -51,6 +60,18 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
+        </dependency>
+
+        <!--json工具-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!--文件类型-->
@@ -77,16 +98,10 @@
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j2-impl</artifactId>
-            <version>${log4j.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- 全局单元测试 -->
