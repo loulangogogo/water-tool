@@ -290,13 +290,14 @@ public class AssertTool {
     }
 
     /**
-     * 判断数组不为空
+     * 确保给定的数组不为空
+     * 如果数组为空，则抛出带有指定错误消息的异常
      *
-     * @param arr      要进行判断的数组对象
-     * @param errorMsg 提示信息
-     * @author :loulan
+     * @param arr      要检查的数组
+     * @param errorMsg 数组为空时抛出的异常消息
+     * @author         :loulan
      */
-    public static void notEmpty(Object[] arr, String errorMsg) {
+    public static <T> void notEmpty(T[] arr, String errorMsg) {
         if (ArrayTool.isEmpty(arr)) {
             throwAssertException(errorMsg);
         }
