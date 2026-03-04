@@ -15,6 +15,20 @@ import java.util.Objects;
 public class ObjectTool {
 
     /**
+     * 获取对象值或返回默认值
+     * <p>如果给定值不为 null 则返回该值，否则返回默认值</p>
+     *
+     * @param <T>          泛型类型
+     * @param value        要进行判断的值
+     * @param defaultValue 当 value 为 null 时返回的默认值
+     * @return 如果 value 不为 null 则返回 value，否则返回 defaultValue
+     * @author :loulan
+     */
+    public static <T> T getOrDefault(T value, T defaultValue) {
+        return isNotNull(value) ? value : defaultValue;
+    }
+
+    /**
      * 判断对象是否是指定类的实例
      *
      * @param obj  要进行判断的对象
