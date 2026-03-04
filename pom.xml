@@ -6,7 +6,7 @@
 
     <groupId>io.github.loulangogogo</groupId>
     <artifactId>water-tool</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <description>上善若水，水善利万物而不争，处众人之所恶，故几于道。</description>
     <url>https://github.com/loulangogogo/water-tool.git</url>
 
@@ -29,7 +29,7 @@
         <tika-core.version>2.9.2</tika-core.version>
 
         <!--json工具-->
-        <jackson.version>2.17.2</jackson.version>
+        <jackson.version>2.20.2</jackson.version>
 
         <!--日志使用-->
         <slf4j.version>2.0.16</slf4j.version>
