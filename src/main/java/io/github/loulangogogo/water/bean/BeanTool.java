@@ -204,7 +204,7 @@ public class BeanTool {
      */
     public static void beanToMap(Object sourceObj, Map<String, Object> targetMap) {
         try {
-            BeanPropertiesTool.beanToBean(sourceObj, targetMap);
+            BeanPropertiesTool.beanToMap(sourceObj, targetMap);
         } catch (Exception ex) {
             throw new CopyPropertieException(ex);
         }

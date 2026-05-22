@@ -26,7 +26,7 @@ public class MD5Tool {
      * @author :loulan
      */
     public static String md5Hex(String data) {
-        if (StrTool.isEmpty(data)) {
+        if (ObjectTool.isNull(data)) {
             return null;
         }
         return DigestUtils.md5Hex(data);
