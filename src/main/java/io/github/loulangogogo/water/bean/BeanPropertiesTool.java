@@ -10,6 +10,7 @@ import io.github.loulangogogo.water.tool.ObjectTool;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,15 +41,19 @@ class BeanPropertiesTool {
             // 如果没有属性就直接返回
             return;
         }
-        HashMap<String, Object> data = ArrayTool.parallelStream(sourcePropertyDescriptors)
+        HashMap<String, Object> data = ArrayTool.stream(sourcePropertyDescriptors)
                 .filter(sourcePd -> {
-                    // 过滤掉其中的class属性
-                    if ("class".equals(sourcePd.getName())) return false;
-                    // 无法读取的数据过滤掉
-                    if (ObjectTool.isNotNull(sourcePd.getReadMethod())) {
-                        return true;
-                    } else {
-                        return false;
+                    try {
+                        // 过滤掉其中的class属性
+                        if ("class".equals(sourcePd.getName())) return false;
+                        // 无法读取的数据过滤掉
+                        if (ObjectTool.isNotNull(sourcePd.getReadMethod().invoke(source))) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    } catch (Exception e) {
+                        throw new CopyPropertieException(e);
                     }
                 })
                 .collect(CollectorTool.toMap(

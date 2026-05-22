@@ -18,7 +18,7 @@ public class BigDecimalTool {
      * @author :loulan
      */
     public static BigDecimal valueOf(float data) {
-        return new BigDecimal(data);
+        return valueOf(Float.toString( data));
     }
 
     /**
@@ -40,7 +40,7 @@ public class BigDecimalTool {
      * @author :loulan
      */
     public static BigDecimal valueOf(double data) {
-        return new BigDecimal(data);
+        return BigDecimal.valueOf(data);
     }
 
     /**
@@ -51,6 +51,6 @@ public class BigDecimalTool {
      * @author :loulan
      */
     public static BigDecimal valueOf(int data) {
-        return new BigDecimal(data);
+        return BigDecimal.valueOf(data);
     }
 }
