@@ -55,6 +55,9 @@ public class FileTool {
         if (StrTool.isEmpty(fileName)) {
             return "";
         }
+        if (!fileName.contains( ".")) {
+            return fileName;
+        }
         return fileName.substring(0, fileName.lastIndexOf('.'));
     }
 
@@ -79,6 +82,9 @@ public class FileTool {
      */
     public static String getFileNameSuffix(String fileName) {
         if (StrTool.isEmpty(fileName)) {
+            return "";
+        }
+        if (!fileName.contains( ".")) {
             return "";
         }
         return fileName.substring(fileName.lastIndexOf('.') + 1);

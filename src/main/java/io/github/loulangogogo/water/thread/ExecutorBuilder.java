@@ -29,7 +29,7 @@ public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {
     // 最大线程数
     private int maxPoolSize = Integer.MAX_VALUE;
     // 存活时间
-    private long keepAliveTime = TimeUnit.SECONDS.toSeconds(60);
+    private long keepAliveTime = 60000;
     // 阻塞队列
     private BlockingQueue<Runnable> queue;
     // 线程工厂

@@ -103,8 +103,9 @@ public class ZipTool {
             } else {
                 // 如果是文件的话直接输出
                 if (filter.test(file)) {
-                    FileInputStream fis = new FileInputStream(file);
-                    zip(zipOutputStream, fis, FileTool.getFileName(file));
+                    try (FileInputStream fis = new FileInputStream(file)){
+                        zip(zipOutputStream, fis, FileTool.getFileName(file));
+                    }
                 }
             }
         }
@@ -140,9 +141,10 @@ public class ZipTool {
                             newOutFile.getParentFile().mkdirs();
                         }
                         // 创建文件输出流
-                        FileOutputStream fos = new FileOutputStream(newOutFile);
-                        IoTool.copy(inputStream, fos);
-                        IoTool.close(fos, inputStream);
+                        try (FileOutputStream fos = new FileOutputStream(newOutFile)){
+                            IoTool.copy(inputStream, fos);
+                        }
+                        IoTool.close(inputStream);
                     } catch (IOException e) {
                         throw new IORuntimeException(e);
                     }
@@ -253,13 +255,13 @@ public class ZipTool {
         } else {
             // 如果是文件,然后进行过滤器进行过滤判断
             if (filter.test(dirFile)) {
-                FileInputStream fis = new FileInputStream(dirFile);
-                // PATH_MARK 是路径标志，因为后面要进行路径替换，担心同样的字符串后面也有，所以这里设置标志，这样就可以避免重复字符串了。
-                String path = PATH_MARK + dirFile.getPath();
-                // 替换掉当前文件夹路径部分，剩下的就是文件相对于文件夹的相对路径了
-                String entryPath = path.replace(currentDirPath, "");
-                zip(zipOutputStream, fis, entryPath);
-                IoTool.close(fis);
+                try (FileInputStream fis = new FileInputStream(dirFile)){
+                    // PATH_MARK 是路径标志，因为后面要进行路径替换，担心同样的字符串后面也有，所以这里设置标志，这样就可以避免重复字符串了。
+                    String path = PATH_MARK + dirFile.getPath();
+                    // 替换掉当前文件夹路径部分，剩下的就是文件相对于文件夹的相对路径了
+                    String entryPath = path.replace(currentDirPath, "");
+                    zip(zipOutputStream, fis, entryPath);
+                }
             }
         }
     }

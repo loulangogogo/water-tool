@@ -30,9 +30,10 @@ public class ExceptionTool {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             throwable.printStackTrace(pw); // 打印堆栈信息到PrintWriter
+            String data = sw.toString();
             sw.close(); // 关闭StringWriter
             pw.close(); // 关闭PrintWriter
-            return sw.toString(); // 返回堆栈信息字符串
+            return  data;// 返回堆栈信息字符串
         }catch (Exception ex){
             ex.printStackTrace(); // 在捕获异常时，打印到标准错误输出
             return null; // 发生异常时返回null

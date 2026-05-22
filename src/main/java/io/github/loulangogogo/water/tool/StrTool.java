@@ -399,7 +399,6 @@ public class StrTool {
      * @author :loulan
      */
     public static boolean isEmpty(final CharSequence str) {
-        StringUtils.isEmpty(str);
         return StringUtils.isEmpty(str);
     }
 
@@ -513,8 +512,10 @@ public class StrTool {
             return "";
         }
         StringBuilder strBuilder = new StringBuilder();
-        for (char c : str.toCharArray()) {
-            if (Character.isUpperCase(c)) {
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            char c = charArray[i];
+            if (Character.isUpperCase(c) && i != 0) {
                 strBuilder.append("_");
             }
             strBuilder.append(Character.toLowerCase(c));

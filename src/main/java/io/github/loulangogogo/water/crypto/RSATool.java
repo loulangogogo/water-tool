@@ -9,6 +9,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -127,7 +128,7 @@ public class RSATool {
     public static String encrypt(String data, PublicKey publicKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
         Cipher cipher = Cipher.getInstance(KEY_ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-        int inputLen = data.getBytes().length;
+        int inputLen = data.getBytes(CharsetTool.CHARSET_UTF_8).length;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         int offset = 0;
         byte[] cache;
@@ -135,9 +136,9 @@ public class RSATool {
         // 对数据分段加密
         while (inputLen - offset > 0) {
             if (inputLen - offset > MAX_ENCRYPT_BLOCK) {
-                cache = cipher.doFinal(data.getBytes(), offset, MAX_ENCRYPT_BLOCK);
+                cache = cipher.doFinal(data.getBytes(CharsetTool.CHARSET_UTF_8), offset, MAX_ENCRYPT_BLOCK);
             } else {
-                cache = cipher.doFinal(data.getBytes(), offset, inputLen - offset);
+                cache = cipher.doFinal(data.getBytes(CharsetTool.CHARSET_UTF_8), offset, inputLen - offset);
             }
             out.write(cache, 0, cache.length);
             i++;
@@ -185,7 +186,7 @@ public class RSATool {
         }
         byte[] decryptedData = out.toByteArray();
         out.close();
-        return new String(decryptedData, CharsetTool.UTF_8);
+        return new String(decryptedData, CharsetTool.CHARSET_UTF_8);
     }
 
     /**
