@@ -65,13 +65,13 @@ public class IoTool {
      * （流的某部分字节可以知道流对应的类型）
      *
      * @param stream 要进行操作的流
-     * @param limit  截取N个字节的长度，必须大于等于0
+     * @param limit  截取N个字节的长度，必须大于0
      * @return 截取到的流的前N个字节数组
      * @throws IOException io异常
      * @author :loulan
      */
     public static byte[] peekFirstNBytes(InputStream stream, int limit) throws IOException {
-        if (limit < 0) {
+        if (limit <= 0) {
             throw new InvalidParameterException("截取限制不能小于0");
         }
 

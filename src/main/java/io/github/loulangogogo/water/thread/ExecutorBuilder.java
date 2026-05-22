@@ -255,7 +255,7 @@ public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {
         long keepAliveTime = builder.keepAliveTime;
 
         BlockingQueue<Runnable> queue = ObjectTool.isNull(builder.queue) ? (corePoolSize <= 0) ? new SynchronousQueue<>() : new ArrayBlockingQueue<>(DEFAULT_QUEUE_CAPACITY) : builder.queue;
-        ThreadFactory threadFactory = ObjectTool.isNull(builder.threadFactory) ? new NamedThreadFactory("") : builder().threadFactory;
+        ThreadFactory threadFactory = ObjectTool.isNull(builder.threadFactory) ? new NamedThreadFactory("") : builder.threadFactory;
         RejectedExecutionHandler handler = ObjectTool.isNull(builder.handler) ? RejectPolicyEnum.ABORT.getValue() : builder.handler;
 
         return new ThreadPoolExecutor(
