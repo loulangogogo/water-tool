@@ -31,11 +31,40 @@ public class AESTool {
      ** @since 8
      *********************************************************/
     public enum MODE {
+        /**
+         * 电子密码本模式（Electronic Codebook）
+         * <p>最简单的操作模式，将明文分成固定长度的块，每块独立加密</p>
+         */
         ECB,
+        
+        /**
+         * 密码分组链接模式（Cipher Block Chaining）
+         * <p>每个明文块先与前一个密文块进行异或后再加密，需要初始化向量IV</p>
+         */
         CBC,
+        
+        /**
+         * 密文分组链接模式（Propagating Cipher Block Chaining）
+         * <p>CBC的改进版本，具有更好的错误传播特性</p>
+         */
         PCBC,
+        
+        /**
+         * 计数器模式（Counter）
+         * <p>将计数器值加密后与明文异或，可并行处理</p>
+         */
         CTR,
+        
+        /**
+         * 密文反馈模式（Cipher Feedback）
+         * <p>将前一个密文块加密后与当前明文块异或，适合流式数据</p>
+         */
         CFB,
+        
+        /**
+         * 输出反馈模式（Output Feedback）
+         * <p>将加密算法的输出反馈到输入端，生成密钥流</p>
+         */
         OFB
     }
 
@@ -47,8 +76,22 @@ public class AESTool {
      ** @since 8
      *********************************************************/
     public enum PADDING {
+        /**
+         * 无填充模式
+         * <p>要求数据长度必须是块大小的整数倍，否则抛出异常</p>
+         */
         NoPadding,
+        
+        /**
+         * PKCS#5 填充模式
+         * <p>最常用的填充方式，填充字节值为需要填充的字节数</p>
+         */
         PKCS5Padding,
+        
+        /**
+         * ISO/IEC 10126 填充模式
+         * <p>最后一个字节填充填充字节数，其他字节随机填充</p>
+         */
         ISO10126Padding
     }
 
