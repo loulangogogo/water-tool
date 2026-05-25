@@ -1,5 +1,6 @@
 package io.github.loulangogogo.water.io;
 
+import io.github.loulangogogo.water.tool.StrTool;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
@@ -26,6 +27,7 @@ public class ResourceTool {
      * @author :loulan
      */
     public static InputStream getInputStream(String resource) throws IOException {
+        if(StrTool.isEmpty( resource)) return null;
         URL url = getResource(resource);
         return url.openStream();
     }
@@ -40,6 +42,7 @@ public class ResourceTool {
      * @author :loulan
      */
     public static File getFile(String resource) throws IOException, URISyntaxException {
+        if(StrTool.isEmpty( resource)) return null;
         URL url = getResource(resource);
         return new File(url.toURI());
     }

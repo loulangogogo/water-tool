@@ -109,7 +109,7 @@ public class JsonMap extends LinkedHashMap<String, Object> {
         if (ObjectTool.isNull(obj)) {
             return null;
         } else {
-            return String.valueOf(get(key));
+            return String.valueOf(obj);
         }
     }
 

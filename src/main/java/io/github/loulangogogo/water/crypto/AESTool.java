@@ -2,6 +2,7 @@ package io.github.loulangogogo.water.crypto;
 
 import io.github.loulangogogo.water.exception.DecryptException;
 import io.github.loulangogogo.water.exception.EncryptException;
+import io.github.loulangogogo.water.tool.CharsetTool;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
@@ -164,6 +165,6 @@ public class AESTool {
      * @author :loulan
      */
     public static String decrypt(String key, String data) {
-        return new String(decrypt(key, Base64Tool.toDecode(data), MODE.ECB.name(), PADDING.PKCS5Padding.name()));
+        return new String(decrypt(key, Base64Tool.toDecode(data), MODE.ECB.name(), PADDING.PKCS5Padding.name()), CharsetTool.CHARSET_UTF_8);
     }
 }

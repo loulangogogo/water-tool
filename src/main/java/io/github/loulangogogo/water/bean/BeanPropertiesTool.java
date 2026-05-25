@@ -34,7 +34,6 @@ class BeanPropertiesTool {
         AssertTool.notNull(source, "源对象不能为空");
         AssertTool.notNull(target, "目标对象不能为空");
 
-        Class<?> targetClass = target.getClass();
         // 获取所有属性描述器
         PropertyDescriptor[] sourcePropertyDescriptors = Introspector.getBeanInfo(source.getClass()).getPropertyDescriptors();
         if (ArrayTool.isEmpty(sourcePropertyDescriptors)) {
