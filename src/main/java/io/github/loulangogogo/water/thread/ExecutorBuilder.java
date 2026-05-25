@@ -254,7 +254,6 @@ public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {
      * 使用优先级比较（无界）阻塞队列。（也可以设置为有界，但是有界一般不用这个队列）
      * 是一个按照优先级进行内部元素排序的无界阻塞队列。队列中的元素必须实现 {@link Comparable} 接口，
      * 这样才能通过实现{@link Comparable#compareTo(Object)}方法进行排序。优先级最高的元素将始终排在队列的头部;
-     * <p>
      *
      * @param comparator 排序方式的比较对象
      * @return {@link ThreadPoolExecutor} 建造者

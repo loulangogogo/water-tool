@@ -19,6 +19,7 @@ public class CollTool extends CollectionTool {
      * 移除重复内容
      *
      * @param <T>   泛型
+     * @param <R>   泛型
      * @param tList 要进行重复数据移除的集合对象
      * @param keyFn 要进行去重的属性关键字函数表达式
      * @return 移除重复数据之后的集合对象
