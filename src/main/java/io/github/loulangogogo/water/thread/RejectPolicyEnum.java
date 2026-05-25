@@ -11,13 +11,32 @@ import java.util.concurrent.ThreadPoolExecutor;
  *********************************************************/
 public enum RejectPolicyEnum {
 
-    // 处理程序遭到拒绝将抛出RejectedExecutionException
+    /**
+     * 处理程序遭到拒绝将抛出RejectedExecutionException
+     *
+     * @author :loulan
+     */
     ABORT(new ThreadPoolExecutor.AbortPolicy()),
-    // 放弃当前任务
+    
+    /**
+     * 放弃当前任务
+     *
+     * @author :loulan
+     */
     DISCARD(new ThreadPoolExecutor.DiscardPolicy()),
-    // 如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）
+    
+    /**
+     * 如果执行程序尚未关闭，则位于工作队列头部的任务将被删除，然后重试执行程序（如果再次失败，则重复此过程）
+     *
+     * @author :loulan
+     */
     DISCARD_OLDEST(new ThreadPoolExecutor.DiscardOldestPolicy()),
-    // 由主线程来直接执行
+    
+    /**
+     * 由主线程来直接执行
+     *
+     * @author :loulan
+     */
     CALLER_RUNS(new ThreadPoolExecutor.CallerRunsPolicy());
 
     private RejectedExecutionHandler value;

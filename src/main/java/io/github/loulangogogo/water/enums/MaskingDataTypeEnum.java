@@ -7,15 +7,39 @@ package io.github.loulangogogo.water.enums;
  ** @since 8
  *********************************************************/
 public enum MaskingDataTypeEnum {
-    // 手机号码
+    /**
+     * 手机号码
+     *
+     * @author :loulan
+     */
     PHONE,
-    // 邮箱
+    
+    /**
+     * 邮箱
+     *
+     * @author :loulan
+     */
     EMAIL,
-    // 身份证号码
+    
+    /**
+     * 身份证号码
+     *
+     * @author :loulan
+     */
     ID_CARD,
-    // 银行卡号
+    
+    /**
+     * 银行卡号
+     *
+     * @author :loulan
+     */
     BANK_CARD,
-    // 用户姓名（中国人姓名）
+    
+    /**
+     * 用户姓名（中国人姓名）
+     *
+     * @author :loulan
+     */
     NAME
     ;
     private MaskingDataTypeEnum() {}

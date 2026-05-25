@@ -21,20 +21,53 @@ import java.util.concurrent.*;
  *********************************************************/
 public class ExecutorBuilder implements Builder<ThreadPoolExecutor> {
     private static final long serialVersionUID = 1L;
-    // 默认阻塞队列的容量（有界队列）
+    /**
+     * 默认阻塞队列的容量（有界队列）
+     *
+     * @author :loulan
+     */
     public static final int DEFAULT_QUEUE_CAPACITY = 1024;
 
-    // 核心线程数
+    /**
+     * 核心线程数
+     *
+     * @author :loulan
+     */
     private int corePoolSize;
-    // 最大线程数
+    
+    /**
+     * 最大线程数
+     *
+     * @author :loulan
+     */
     private int maxPoolSize = Integer.MAX_VALUE;
-    // 存活时间
+    
+    /**
+     * 存活时间
+     *
+     * @author :loulan
+     */
     private long keepAliveTime = 60000;
-    // 阻塞队列
+    
+    /**
+     * 阻塞队列
+     *
+     * @author :loulan
+     */
     private BlockingQueue<Runnable> queue;
-    // 线程工厂
+    
+    /**
+     * 线程工厂
+     *
+     * @author :loulan
+     */
     private ThreadFactory threadFactory;
-    // 处理器
+    
+    /**
+     * 处理器
+     *
+     * @author :loulan
+     */
     private RejectedExecutionHandler handler;
 
     /**

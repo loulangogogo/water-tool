@@ -14,6 +14,12 @@ public class WeightRandom<T> {
 
     private Map<T, Number> data;
 
+    /**
+     * 获取权重数据Map
+     *
+     * @return 权重数据Map对象
+     * @author :loulan
+     */
     public Map<T, Number> getData() {
         return data;
     }

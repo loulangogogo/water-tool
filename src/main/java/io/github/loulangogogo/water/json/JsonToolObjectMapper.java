@@ -26,6 +26,11 @@ import java.util.TimeZone;
  ** @since 8
  *********************************************************/
 abstract class JsonToolObjectMapper {
+    /**
+     * JSON处理的ObjectMapper实例对象
+     *
+     * @author :loulan
+     */
     protected final static ObjectMapper objectMapper = new ObjectMapper();
 
     /**
