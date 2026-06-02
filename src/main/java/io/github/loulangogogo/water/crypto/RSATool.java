@@ -31,16 +31,10 @@ public class RSATool {
     // 128 对应 1024，256对应2048
     private static final int KEYSIZE = 2048;
 
-    // 不仅可以使用DSA算法，同样也可以使用RSA算法做数字签名
-    private static final String KEY_ALGORITHM = "RSA";
-
     // RSA最大加密明文大小（Cipher限制加密字节大小为246，所以这里设置最大加密明文大小，之后进行分段加密） 前提KEYSZIE=2048
     private static final int MAX_ENCRYPT_BLOCK = 245;
     // RSA最大解密密文大小（Cipher限制解密的密文字节长度不能超过256，所以这里设置最大解密密文大小，之后进行分段解密） 前提KEYSZIE=2048
     private static final int MAX_DECRYPT_BLOCK = 256;
-
-    // 签名和验证签名使用的算法
-    private static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 
     /**
      * 从签名算法字符串中提取"with"后面的算法名称
@@ -59,6 +53,14 @@ public class RSATool {
         AssertTool.isTrue(indexOfWith > 0, "algorithm 必须包含with");
         String algorithmAfterWith = StrTool.substring(algorithm, indexOfWith + "with".length());
         AssertTool.notBlank(algorithmAfterWith, "algorithm 后缀算法不存在");
+
+        // ECDSA、SM2、ECIES 在 KeyPairGenerator/KeyFactory 中对应的算法名称是 EC
+        if ("ECDSA".equalsIgnoreCase(algorithmAfterWith)
+                || "SM2".equalsIgnoreCase(algorithmAfterWith)
+                || "ECIES".equalsIgnoreCase(algorithmAfterWith)) {
+            return "EC";
+        }
+
         return algorithmAfterWith;
     }
 
@@ -106,7 +108,7 @@ public class RSATool {
      * @throws InvalidKeySpecException  无效的密钥key
      * @author :loulan
      */
-    public static PrivateKey getPrivateKey(String privateKey) {
+    public static PrivateKey getPrivateKey(String privateKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return getPrivateKey(Base64Tool.toDecode(privateKey));
     }
 
@@ -119,9 +121,25 @@ public class RSATool {
      * @throws InvalidKeySpecException  无效的密钥key
      * @author :loulan
      */
-    public static PrivateKey getPrivateKey(byte[] privateKey) {
+    public static PrivateKey getPrivateKey(byte[] privateKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        return getPrivateKey(privateKey, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 将密钥字节数组转换为指定算法的私钥对象
+     * <p>
+     * 根据签名算法枚举自动提取密钥算法名称（如从SHA256withRSA提取RSA），
+     * 使用对应的KeyFactory生成私钥对象。
+     * </p>
+     *
+     * @param privateKey 密钥字节数组
+     * @param algorithm  签名算法枚举，用于确定密钥算法类型
+     * @return 密钥对象
+     * @author :loulan
+     */
+    public static PrivateKey getPrivateKey(byte[] privateKey, SignAlgorithm algorithm) throws NoSuchAlgorithmException, InvalidKeySpecException {
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey);
-        KeyFactory kf = KeyFactory.getInstance(KEY_ALGORITHM);
+        KeyFactory kf = KeyFactory.getInstance(getAlgorithmAfterWith(algorithm.getValue()));
         return kf.generatePrivate(spec);
     }
 
@@ -135,8 +153,24 @@ public class RSATool {
      * @author :loulan
      */
     public static PublicKey getPublicKey(byte[] publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        return getPublicKey(publicKey, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 将公钥字节数组转换为指定算法的公钥对象
+     * <p>
+     * 根据签名算法枚举自动提取密钥算法名称（如从SHA256withRSA提取RSA），
+     * 使用对应的KeyFactory生成公钥对象。
+     * </p>
+     *
+     * @param publicKey 公钥字节数组
+     * @param algorithm 签名算法枚举，用于确定密钥算法类型
+     * @return 公钥对象
+     * @author :loulan
+     */
+    public static PublicKey getPublicKey(byte[] publicKey, SignAlgorithm algorithm) throws NoSuchAlgorithmException, InvalidKeySpecException {
         X509EncodedKeySpec spec = new X509EncodedKeySpec(publicKey);
-        KeyFactory kf = KeyFactory.getInstance(KEY_ALGORITHM);
+        KeyFactory kf = KeyFactory.getInstance(getAlgorithmAfterWith(algorithm.getValue()));
         return kf.generatePublic(spec);
     }
 
@@ -168,7 +202,30 @@ public class RSATool {
      * @author :loulan
      */
     public static String encrypt(String data, PublicKey publicKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
-        Cipher cipher = Cipher.getInstance(KEY_ALGORITHM);
+        return encrypt(data, publicKey, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 对指定的数据进行加密（公钥加密，私钥解密）
+     * <p>
+     * 根据签名算法枚举自动提取密钥算法名称（如从SHA256withRSA提取RSA），
+     * 使用该算法初始化Cipher进行分段加密。
+     * </p>
+     *
+     * @param data      要进行加密的数据
+     * @param publicKey 公钥
+     * @param algorithm 签名算法枚举，用于确定密钥算法类型
+     * @return 加密后的数据（Base64编码）
+     * @throws NoSuchPaddingException    未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException  未找到指定算法异常
+     * @throws InvalidKeyException       密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException       填充错误异常
+     * @throws IOException               IO异常
+     * @author :loulan
+     */
+    public static String encrypt(String data, PublicKey publicKey, SignAlgorithm algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
+        Cipher cipher = Cipher.getInstance(getAlgorithmAfterWith(algorithm.getValue()));
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         int inputLen = data.getBytes(CharsetTool.CHARSET_UTF_8).length;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -207,7 +264,30 @@ public class RSATool {
      * @author :loulan
      */
     public static String decrypt(String data, PrivateKey privateKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
-        Cipher cipher = Cipher.getInstance(KEY_ALGORITHM);
+        return decrypt(data, privateKey, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 解密数据（公钥加密，私钥解密）
+     * <p>
+     * 根据签名算法枚举自动提取密钥算法名称（如从SHA256withRSA提取RSA），
+     * 使用该算法初始化Cipher进行分段解密。
+     * </p>
+     *
+     * @param data       要进行解密的数据（Base64编码）
+     * @param privateKey 私钥
+     * @param algorithm  签名算法枚举，用于确定密钥算法类型
+     * @return 解密后的数据
+     * @throws NoSuchPaddingException    未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException  未找到指定算法异常
+     * @throws InvalidKeyException       密钥无效异常
+     * @throws IllegalBlockSizeException 块大小非法异常
+     * @throws BadPaddingException       填充错误异常
+     * @throws IOException               IO异常
+     * @author :loulan
+     */
+    public static String decrypt(String data, PrivateKey privateKey, SignAlgorithm algorithm) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
+        Cipher cipher = Cipher.getInstance(getAlgorithmAfterWith(algorithm.getValue()));
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
         byte[] dataBytes = Base64Tool.toDecode(data);
         int inputLen = dataBytes.length;
@@ -244,7 +324,27 @@ public class RSATool {
      * @author :loulan
      */
     public static String sign(String data, PrivateKey privateKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
-        Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
+        return sign(data, privateKey, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 使用指定签名算法对数据进行签名
+     * <p>
+     * 根据签名算法枚举（如SHA256withRSA）初始化Signature进行签名操作。
+     * </p>
+     *
+     * @param data       要进行签名的数据
+     * @param privateKey 私钥
+     * @param algorithm  签名算法枚举
+     * @return 签名（Base64编码）
+     * @throws NoSuchAlgorithmException     未找到指定算法异常
+     * @throws InvalidKeyException          密钥无效异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     * @throws SignatureException           签名异常
+     * @author :loulan
+     */
+    public static String sign(String data, PrivateKey privateKey, SignAlgorithm algorithm) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
+        Signature signature = Signature.getInstance(algorithm.getValue());
         signature.initSign(privateKey);
         signature.update(data.getBytes(CharsetTool.UTF_8));
         byte[] sign = signature.sign();
@@ -265,7 +365,28 @@ public class RSATool {
      * @author :loulan
      */
     public static boolean verifySign(String data, String encodeSign, PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
-        Signature signature2 = Signature.getInstance(SIGNATURE_ALGORITHM);
+        return verifySign(data, encodeSign, publicKey, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 使用指定签名算法验证签名
+     * <p>
+     * 根据签名算法枚举（如SHA256withRSA）初始化Signature进行验签操作。
+     * </p>
+     *
+     * @param data       原始的数据
+     * @param encodeSign 被签名的数据（Base64编码）
+     * @param publicKey  公钥
+     * @param algorithm  签名算法枚举
+     * @return 签名是否正确
+     * @throws NoSuchAlgorithmException     未找到指定算法异常
+     * @throws InvalidKeyException          密钥无效异常
+     * @throws UnsupportedEncodingException 不支持的编码异常
+     * @throws SignatureException           签名异常
+     * @author :loulan
+     */
+    public static boolean verifySign(String data, String encodeSign, PublicKey publicKey, SignAlgorithm algorithm) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
+        Signature signature2 = Signature.getInstance(algorithm.getValue());
         signature2.initVerify(publicKey);
         signature2.update(data.getBytes(CharsetTool.UTF_8));
         return signature2.verify(Base64Tool.toDecode(encodeSign));
