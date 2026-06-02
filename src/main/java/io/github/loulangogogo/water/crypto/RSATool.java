@@ -134,7 +134,9 @@ public class RSATool {
      *
      * @param privateKey 密钥字节数组
      * @param algorithm  签名算法枚举，用于确定密钥算法类型
-     * @return 密钥对象
+     * @return 私钥对象
+     * @throws NoSuchAlgorithmException 当指定的算法不可用时抛出异常
+     * @throws InvalidKeySpecException  当密钥规范无效时抛出异常
      * @author :loulan
      */
     public static PrivateKey getPrivateKey(byte[] privateKey, SignAlgorithm algorithm) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -166,6 +168,8 @@ public class RSATool {
      * @param publicKey 公钥字节数组
      * @param algorithm 签名算法枚举，用于确定密钥算法类型
      * @return 公钥对象
+     * @throws NoSuchAlgorithmException 当指定的算法不可用时抛出异常
+     * @throws InvalidKeySpecException  当密钥规范无效时抛出异常
      * @author :loulan
      */
     public static PublicKey getPublicKey(byte[] publicKey, SignAlgorithm algorithm) throws NoSuchAlgorithmException, InvalidKeySpecException {
