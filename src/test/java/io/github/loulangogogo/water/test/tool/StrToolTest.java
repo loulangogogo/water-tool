@@ -373,4 +373,305 @@ public class StrToolTest {
     public void testDataMasking_null() {
         assertNull(StrTool.dataMasking(null, MaskingDataTypeEnum.PHONE));
     }
+
+    // ==================== startWith ====================
+
+    /**
+     * 测试startWith方法，验证区分大小写的前缀判断。
+     */
+    @Test
+    public void testStartWith_caseSensitive() {
+        assertTrue(StrTool.startWith("HelloWorld", "Hello", false));
+        assertFalse(StrTool.startWith("HelloWorld", "hello", false));
+        assertFalse(StrTool.startWith("HelloWorld", "World", false));
+    }
+
+    /**
+     * 测试startWith方法，验证忽略大小写的前缀判断。
+     */
+    @Test
+    public void testStartWith_ignoreCase() {
+        assertTrue(StrTool.startWith("HelloWorld", "hello", true));
+        assertTrue(StrTool.startWith("HelloWorld", "HELLO", true));
+        assertTrue(StrTool.startWith("HelloWorld", "Hello", true));
+        assertFalse(StrTool.startWith("HelloWorld", "World", true));
+    }
+
+    /**
+     * 测试startWith方法，验证str为null时返回false。
+     */
+    @Test
+    public void testStartWith_nullStr() {
+        assertFalse(StrTool.startWith(null, "Hello", false));
+        assertFalse(StrTool.startWith(null, "Hello", true));
+    }
+
+    /**
+     * 测试startWith方法，验证prefix为null时返回false。
+     */
+    @Test
+    public void testStartWith_nullPrefix() {
+        assertFalse(StrTool.startWith("HelloWorld", null, false));
+        assertFalse(StrTool.startWith("HelloWorld", null, true));
+    }
+
+    /**
+     * 测试startWith方法，验证prefix为空串时返回true。
+     */
+    @Test
+    public void testStartWith_emptyPrefix() {
+        assertTrue(StrTool.startWith("HelloWorld", "", false));
+        assertTrue(StrTool.startWith("HelloWorld", "", true));
+    }
+
+    /**
+     * 测试startWith方法，验证str为空串且prefix非空时返回false。
+     */
+    @Test
+    public void testStartWith_emptyStr() {
+        assertFalse(StrTool.startWith("", "Hello", false));
+        assertFalse(StrTool.startWith("", "Hello", true));
+        // 空串以空串为前缀应返回true
+        assertTrue(StrTool.startWith("", "", false));
+    }
+
+    /**
+     * 测试startWith方法，验证中文字符串的前缀判断。
+     */
+    @Test
+    public void testStartWith_chinese() {
+        assertTrue(StrTool.startWith("楼兰工具有", "楼兰", false));
+        assertFalse(StrTool.startWith("楼兰工具有", "工具", false));
+        assertTrue(StrTool.startWith("楼兰工具有", "楼兰", true));
+    }
+
+    // ==================== startsWith ====================
+
+    /**
+     * 测试startsWith方法，验证区分大小写的前缀判断。
+     */
+    @Test
+    public void testStartsWith_match() {
+        assertTrue(StrTool.startsWith("HelloWorld", "Hello"));
+        assertFalse(StrTool.startsWith("HelloWorld", "hello"));
+    }
+
+    /**
+     * 测试startsWith方法，验证null处理。
+     */
+    @Test
+    public void testStartsWith_null() {
+        assertFalse(StrTool.startsWith(null, "Hello"));
+        assertFalse(StrTool.startsWith("HelloWorld", null));
+    }
+
+    /**
+     * 测试startsWith方法，验证空串处理。
+     */
+    @Test
+    public void testStartsWith_empty() {
+        assertTrue(StrTool.startsWith("HelloWorld", ""));
+        assertFalse(StrTool.startsWith("", "Hello"));
+        assertTrue(StrTool.startsWith("", ""));
+    }
+
+    /**
+     * 测试startsWith方法，验证中文字符串。
+     */
+    @Test
+    public void testStartsWith_chinese() {
+        assertTrue(StrTool.startsWith("楼兰工具", "楼兰"));
+        assertFalse(StrTool.startsWith("楼兰工具", "工具"));
+    }
+
+    // ==================== startsWithIgnoreCase ====================
+
+    /**
+     * 测试startsWithIgnoreCase方法，验证忽略大小写的前缀判断。
+     */
+    @Test
+    public void testStartsWithIgnoreCase_match() {
+        assertTrue(StrTool.startsWithIgnoreCase("HelloWorld", "hello"));
+        assertTrue(StrTool.startsWithIgnoreCase("HelloWorld", "HELLO"));
+        assertTrue(StrTool.startsWithIgnoreCase("HelloWorld", "Hello"));
+        assertFalse(StrTool.startsWithIgnoreCase("HelloWorld", "World"));
+    }
+
+    /**
+     * 测试startsWithIgnoreCase方法，验证null处理。
+     */
+    @Test
+    public void testStartsWithIgnoreCase_null() {
+        assertFalse(StrTool.startsWithIgnoreCase(null, "Hello"));
+        assertFalse(StrTool.startsWithIgnoreCase("HelloWorld", null));
+    }
+
+    /**
+     * 测试startsWithIgnoreCase方法，验证空串处理。
+     */
+    @Test
+    public void testStartsWithIgnoreCase_empty() {
+        assertTrue(StrTool.startsWithIgnoreCase("HelloWorld", ""));
+        assertFalse(StrTool.startsWithIgnoreCase("", "Hello"));
+        assertTrue(StrTool.startsWithIgnoreCase("", ""));
+    }
+
+    /**
+     * 测试startsWithIgnoreCase方法，验证中文字符串。
+     */
+    @Test
+    public void testStartsWithIgnoreCase_chinese() {
+        assertTrue(StrTool.startsWithIgnoreCase("楼兰工具", "楼兰"));
+        assertFalse(StrTool.startsWithIgnoreCase("楼兰工具", "工具"));
+    }
+
+    // ==================== indexOf ====================
+
+    /**
+     * 测试indexOf方法，验证正常查找返回正确位置。
+     */
+    @Test
+    public void testIndexOf_found() {
+        assertEquals(0, StrTool.indexOf("HelloWorld", "Hello"));
+        assertEquals(5, StrTool.indexOf("HelloWorld", "World"));
+        assertEquals(2, StrTool.indexOf("HelloWorld", "llo"));
+    }
+
+    /**
+     * 测试indexOf方法，验证未找到返回-1。
+     */
+    @Test
+    public void testIndexOf_notFound() {
+        assertEquals(-1, StrTool.indexOf("HelloWorld", "xyz"));
+        assertEquals(-1, StrTool.indexOf("HelloWorld", "hello"));  // 区分大小写
+    }
+
+    /**
+     * 测试indexOf方法，验证null处理返回-1。
+     */
+    @Test
+    public void testIndexOf_null() {
+        assertEquals(-1, StrTool.indexOf(null, "Hello"));
+        assertEquals(-1, StrTool.indexOf("HelloWorld", null));
+        assertEquals(-1, StrTool.indexOf(null, null));
+    }
+
+    /**
+     * 测试indexOf方法，验证空串和空子串处理。
+     */
+    @Test
+    public void testIndexOf_empty() {
+        assertEquals(0, StrTool.indexOf("HelloWorld", ""));
+        assertEquals(-1, StrTool.indexOf("", "Hello"));
+        assertEquals(0, StrTool.indexOf("", ""));
+    }
+
+    /**
+     * 测试indexOf方法，验证中文字符串查找。
+     */
+    @Test
+    public void testIndexOf_chinese() {
+        assertEquals(0, StrTool.indexOf("楼兰工具类", "楼兰"));
+        assertEquals(2, StrTool.indexOf("楼兰工具类", "工具"));
+        assertEquals(-1, StrTool.indexOf("楼兰工具类", "java"));
+    }
+
+    // ==================== lastIndexOf ====================
+
+    /**
+     * 测试lastIndexOf方法，验证正常查找返回最后一次出现的位置。
+     */
+    @Test
+    public void testLastIndexOf_found() {
+        assertEquals(8, StrTool.lastIndexOf("HelloWorld", "l"));
+        assertEquals(5, StrTool.lastIndexOf("HelloWorld", "World"));
+        assertEquals(3, StrTool.lastIndexOf("abcabc", "abc"));  // 最后一次在索引3
+    }
+
+    /**
+     * 测试lastIndexOf方法，验证未找到返回-1。
+     */
+    @Test
+    public void testLastIndexOf_notFound() {
+        assertEquals(-1, StrTool.lastIndexOf("HelloWorld", "xyz"));
+        assertEquals(-1, StrTool.lastIndexOf("HelloWorld", "world"));  // 区分大小写
+    }
+
+    /**
+     * 测试lastIndexOf方法，验证null处理返回-1。
+     */
+    @Test
+    public void testLastIndexOf_null() {
+        assertEquals(-1, StrTool.lastIndexOf(null, "Hello"));
+        assertEquals(-1, StrTool.lastIndexOf("HelloWorld", null));
+        assertEquals(-1, StrTool.lastIndexOf(null, null));
+    }
+
+    /**
+     * 测试lastIndexOf方法，验证空串和空子串处理。
+     */
+    @Test
+    public void testLastIndexOf_empty() {
+        assertEquals(10, StrTool.lastIndexOf("HelloWorld", ""));  // 空串返回字符串长度
+        assertEquals(-1, StrTool.lastIndexOf("", "Hello"));
+        assertEquals(0, StrTool.lastIndexOf("", ""));
+    }
+
+    /**
+     * 测试lastIndexOf方法，验证中文字符串查找。
+     */
+    @Test
+    public void testLastIndexOf_chinese() {
+        assertEquals(2, StrTool.lastIndexOf("楼兰楼兰", "楼兰"));  // 最后一次在索引2
+        assertEquals(-1, StrTool.lastIndexOf("楼兰工具", "java"));
+    }
+
+    // ==================== lastIndexOfIgnoreCase ====================
+
+    /**
+     * 测试lastIndexOfIgnoreCase方法，验证忽略大小写查找最后一次出现的位置。
+     */
+    @Test
+    public void testLastIndexOfIgnoreCase_found() {
+        assertEquals(8, StrTool.lastIndexOfIgnoreCase("HelloWorld", "L"));
+        assertEquals(5, StrTool.lastIndexOfIgnoreCase("HelloWorld", "world"));
+        assertEquals(3, StrTool.lastIndexOfIgnoreCase("abcABC", "ABC"));  // 最后一次在索引3
+    }
+
+    /**
+     * 测试lastIndexOfIgnoreCase方法，验证未找到返回-1。
+     */
+    @Test
+    public void testLastIndexOfIgnoreCase_notFound() {
+        assertEquals(-1, StrTool.lastIndexOfIgnoreCase("HelloWorld", "xyz"));
+    }
+
+    /**
+     * 测试lastIndexOfIgnoreCase方法，验证null处理返回-1。
+     */
+    @Test
+    public void testLastIndexOfIgnoreCase_null() {
+        assertEquals(-1, StrTool.lastIndexOfIgnoreCase(null, "Hello"));
+        assertEquals(-1, StrTool.lastIndexOfIgnoreCase("HelloWorld", null));
+        assertEquals(-1, StrTool.lastIndexOfIgnoreCase(null, null));
+    }
+
+    /**
+     * 测试lastIndexOfIgnoreCase方法，验证空串和空子串处理。
+     */
+    @Test
+    public void testLastIndexOfIgnoreCase_empty() {
+        assertEquals(10, StrTool.lastIndexOfIgnoreCase("HelloWorld", ""));
+        assertEquals(-1, StrTool.lastIndexOfIgnoreCase("", "Hello"));
+        assertEquals(0, StrTool.lastIndexOfIgnoreCase("", ""));
+    }
+
+    /**
+     * 测试lastIndexOfIgnoreCase方法，验证中文字符串查找。
+     */
+    @Test
+    public void testLastIndexOfIgnoreCase_chinese() {
+        assertEquals(2, StrTool.lastIndexOfIgnoreCase("楼兰楼兰", "楼兰"));
+        assertEquals(-1, StrTool.lastIndexOfIgnoreCase("楼兰工具", "java"));
+    }
 }

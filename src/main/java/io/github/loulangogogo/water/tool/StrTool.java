@@ -586,4 +586,90 @@ public class StrTool {
     public static boolean equals(CharSequence str1, CharSequence str2) {
         return equals(str1, str2, false);
     }
+
+    /**
+     * 判断字符串是否以指定前缀开头
+     * <ul>
+     *     <li>str或prefix为{@code null}时返回{@code false}</li>
+     *     <li>ignoreCase为{@code true}时忽略大小写判断</li>
+     *     <li>ignoreCase为{@code false}时区分大小写判断</li>
+     * </ul>
+     *
+     * @param str        要判断的字符串
+     * @param prefix     前缀字符串
+     * @param ignoreCase 是否忽略大小写
+     * @return 是否以指定前缀开头
+     * @author :loulan
+     */
+    public static boolean startWith(String str, String prefix, boolean ignoreCase) {
+        if (ObjectTool.isNull(str) || ObjectTool.isNull(prefix)) {
+            return false;
+        }
+        return ignoreCase
+                ? StringUtils.startsWithIgnoreCase(str, prefix)
+                : StringUtils.startsWith(str, prefix);
+    }
+
+    /**
+     * 判断字符串是否以指定前缀开头（区分大小写）
+     *
+     * @param str    要判断的字符串
+     * @param prefix 前缀字符串
+     * @return 是否以指定前缀开头
+     * @author :loulan
+     */
+    public static boolean startsWith(String str, String prefix) {
+        return startWith(str, prefix, false);
+    }
+
+    /**
+     * 判断字符串是否以指定前缀开头（忽略大小写）
+     *
+     * @param str    要判断的字符串
+     * @param prefix 前缀字符串
+     * @return 是否以指定前缀开头
+     * @author :loulan
+     */
+    public static boolean startsWithIgnoreCase(String str, String prefix) {
+        return startWith(str, prefix, true);
+    }
+
+    /**
+     * 查找子串在字符串中首次出现的位置（区分大小写）
+     * <p>str或searchStr为{@code null}时返回{@code -1}</p>
+     *
+     * @param str       要搜索的字符串
+     * @param searchStr 要查找的子串
+     * @return 子串首次出现的位置，未找到返回{@code -1}
+     * @author :loulan
+     */
+    public static int indexOf(String str, String searchStr) {
+        return StringUtils.indexOf(str, searchStr);
+    }
+
+    /**
+     * 查找子串在字符串中最后一次出现的位置（区分大小写）
+     * <p>str或searchStr为{@code null}时返回{@code -1}</p>
+     *
+     * @param str       要搜索的字符串
+     * @param searchStr 要查找的子串
+     * @return 子串最后一次出现的位置，未找到返回{@code -1}
+     * @author :loulan
+     */
+    public static int lastIndexOf(String str, String searchStr) {
+        return StringUtils.lastIndexOf(str, searchStr);
+    }
+
+    /**
+     * 查找子串在字符串中最后一次出现的位置（忽略大小写）
+     * <p>str或searchStr为{@code null}时返回{@code -1}</p>
+     *
+     * @param str       要搜索的字符串
+     * @param searchStr 要查找的子串
+     * @return 子串最后一次出现的位置，未找到返回{@code -1}
+     * @author :loulan
+     */
+    public static int lastIndexOfIgnoreCase(String str, String searchStr) {
+        return StringUtils.lastIndexOfIgnoreCase(str, searchStr);
+    }
 }

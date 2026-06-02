@@ -1,6 +1,10 @@
 package io.github.loulangogogo.water.crypto;
 
+import io.github.loulangogogo.water.enums.SignAlgorithm;
+import io.github.loulangogogo.water.tool.AssertTool;
 import io.github.loulangogogo.water.tool.CharsetTool;
+import io.github.loulangogogo.water.tool.StrTool;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -17,7 +21,7 @@ import java.security.spec.X509EncodedKeySpec;
 
 /*********************************************************
  ** RSA的加密工具类
- ** 
+ **
  ** @author loulan
  ** @since 8
  *********************************************************/
@@ -39,6 +43,27 @@ public class RSATool {
     private static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 
     /**
+     * 从签名算法字符串中提取"with"后面的算法名称
+     * <p>
+     * 例如：从"SHA256withRSA"中提取"RSA"，从"MD5withRSA"中提取"RSA"
+     * </p>
+     *
+     * @param algorithm 完整的签名算法字符串，必须包含"with"关键字
+     * @return "with"后面的算法名称
+     * @throws IllegalArgumentException 当algorithm为空、不包含"with"或后缀算法不存在时抛出异常
+     */
+    private static String getAlgorithmAfterWith(String algorithm) {
+        AssertTool.notNull(algorithm, "algorithm 不能为空");
+
+        int indexOfWith = StrTool.lastIndexOfIgnoreCase(algorithm, "with");
+        AssertTool.isTrue(indexOfWith > 0, "algorithm 必须包含with");
+        String algorithmAfterWith = StrTool.substring(algorithm, indexOfWith + "with".length());
+        AssertTool.notBlank(algorithmAfterWith, "algorithm 后缀算法不存在");
+        return algorithmAfterWith;
+    }
+
+
+    /**
      * 获取钥匙对（公钥和私钥的钥匙对）
      *
      * @param saltValue 盐值
@@ -47,13 +72,30 @@ public class RSATool {
      * @author :loulan
      */
     public static KeyPair getKeyPair(String saltValue) throws NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(KEY_ALGORITHM);
+        return getKeyPair(saltValue, SignAlgorithm.SHA256withRSA);
+    }
+
+    /**
+     * 根据指定的签名算法生成密钥对（公钥和私钥）
+     * <p>
+     * 从签名算法中提取加密算法名称（如从"SHA256withRSA"提取"RSA"），
+     * 结合盐值初始化安全随机数生成器，生成指定长度的密钥对。
+     * </p>
+     *
+     * @param saltValue 盐值字符串，用于增强密钥生成的随机性
+     * @param algorithm 签名算法枚举，必须包含"with"关键字（如SHA256withRSA、MD5withRSA等）
+     * @return 生成的密钥对对象，包含公钥和私钥
+     * @throws NoSuchAlgorithmException 当指定的算法不可用时抛出异常
+     */
+    public static KeyPair getKeyPair(String saltValue, SignAlgorithm algorithm) throws NoSuchAlgorithmException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(getAlgorithmAfterWith(algorithm.getValue()));
         SecureRandom secureRandom = new SecureRandom(saltValue.getBytes());
         keyPairGenerator.initialize(KEYSIZE, secureRandom);
         KeyPair keyPair = keyPairGenerator.genKeyPair();
 
         return keyPair;
     }
+
 
     /**
      * 将密钥字符串转换为密钥对象
@@ -64,7 +106,7 @@ public class RSATool {
      * @throws InvalidKeySpecException  无效的密钥key
      * @author :loulan
      */
-    public static PrivateKey getPrivateKey(String privateKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static PrivateKey getPrivateKey(String privateKey) {
         return getPrivateKey(Base64Tool.toDecode(privateKey));
     }
 
@@ -77,7 +119,7 @@ public class RSATool {
      * @throws InvalidKeySpecException  无效的密钥key
      * @author :loulan
      */
-    public static PrivateKey getPrivateKey(byte[] privateKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static PrivateKey getPrivateKey(byte[] privateKey) {
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey);
         KeyFactory kf = KeyFactory.getInstance(KEY_ALGORITHM);
         return kf.generatePrivate(spec);
@@ -117,12 +159,12 @@ public class RSATool {
      * @param data      要进行加密的数据
      * @param publicKey 公钥
      * @return 加密后的数据
-     * @throws NoSuchPaddingException 未找到指定填充方式异常
-     * @throws NoSuchAlgorithmException 未找到指定算法异常
-     * @throws InvalidKeyException 密钥无效异常
+     * @throws NoSuchPaddingException    未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException  未找到指定算法异常
+     * @throws InvalidKeyException       密钥无效异常
      * @throws IllegalBlockSizeException 块大小非法异常
-     * @throws BadPaddingException 填充错误异常
-     * @throws IOException IO异常
+     * @throws BadPaddingException       填充错误异常
+     * @throws IOException               IO异常
      * @author :loulan
      */
     public static String encrypt(String data, PublicKey publicKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
@@ -156,12 +198,12 @@ public class RSATool {
      * @param data       要进行解密的数据
      * @param privateKey 私钥
      * @return 解密后的数据
-     * @throws NoSuchPaddingException 未找到指定填充方式异常
-     * @throws NoSuchAlgorithmException 未找到指定算法异常
-     * @throws InvalidKeyException 密钥无效异常
+     * @throws NoSuchPaddingException    未找到指定填充方式异常
+     * @throws NoSuchAlgorithmException  未找到指定算法异常
+     * @throws InvalidKeyException       密钥无效异常
      * @throws IllegalBlockSizeException 块大小非法异常
-     * @throws BadPaddingException 填充错误异常
-     * @throws IOException IO异常
+     * @throws BadPaddingException       填充错误异常
+     * @throws IOException               IO异常
      * @author :loulan
      */
     public static String decrypt(String data, PrivateKey privateKey) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
@@ -192,13 +234,13 @@ public class RSATool {
     /**
      * 进行签名 (因为签名比验证签名重要，所以签名采用私钥)
      *
-     * @param data 要进行签名的数据
+     * @param data       要进行签名的数据
      * @param privateKey 私钥
      * @return 签名
-     * @throws NoSuchAlgorithmException 未找到指定算法异常
-     * @throws InvalidKeyException 密钥无效异常
+     * @throws NoSuchAlgorithmException     未找到指定算法异常
+     * @throws InvalidKeyException          密钥无效异常
      * @throws UnsupportedEncodingException 不支持的编码异常
-     * @throws SignatureException 签名异常
+     * @throws SignatureException           签名异常
      * @author :loulan
      */
     public static String sign(String data, PrivateKey privateKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
@@ -216,10 +258,10 @@ public class RSATool {
      * @param encodeSign 被签名的数据
      * @param publicKey  公钥
      * @return 签名是否正确
-     * @throws NoSuchAlgorithmException 未找到指定算法异常
-     * @throws InvalidKeyException 密钥无效异常
+     * @throws NoSuchAlgorithmException     未找到指定算法异常
+     * @throws InvalidKeyException          密钥无效异常
      * @throws UnsupportedEncodingException 不支持的编码异常
-     * @throws SignatureException 签名异常
+     * @throws SignatureException           签名异常
      * @author :loulan
      */
     public static boolean verifySign(String data, String encodeSign, PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException, UnsupportedEncodingException, SignatureException {
